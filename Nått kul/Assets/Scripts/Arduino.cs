@@ -4,9 +4,9 @@
 //the ControllerInput class and shall never be called anywhere else. 
 //
 //How to Use:
-//To be able to use the ControllerInput class with the ardunio a few couple of steps need to be done.
-//1. Set the correct baud rate and communication port in the Arduino and the SerialPort class ín the variable def.
-//Code review by:
+//To be able to use the ControllerInput class with the Ardunio a few couple of steps need to be done.
+//1. Set the correct braud rate and communication port in the Arduino and the SerialPort class ín the variable def.
+//Code review by: Emma Nilsson, Oliver Johansson 20/4
 using UnityEngine;
 using System.Collections;
 using System.IO;        // for communication with arduino 
@@ -21,12 +21,13 @@ public class Arduino : MonoBehaviour {
     //Initate a instance of Ardunio
     public static Arduino instance = null;
     //A serialport to the ardunio
-    private SerialPort sp = new SerialPort("COM3", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Nano = new SerialPort("COM3", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Duo = new SerialPort("COM6", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
     //Buttons and joysticks
     bool [] buttons = new bool[5] { false, false, false, false, false };
     bool [] buttons_light = new bool[5] { false, false, false, false, false };
     private int[] Joystick = new int[4] { 0, 0, 0, 0 };
-    private int[] controllers = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    private int[] controllers = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //skriv som temporär istället
 
     /*****************************************************
     ****************Functions implementation**************
@@ -48,13 +49,16 @@ public class Arduino : MonoBehaviour {
     // Open a stream to the ardunio and set a timeout time.
     private void open()
     {
-        sp.Open();
-        sp.ReadTimeout = 5;
+        SerialPort_Nano.Open();
+        SerialPort_Nano.ReadTimeout = 1;
+
+        SerialPort_Duo.Open();
+        SerialPort_Duo.ReadTimeout = 1;
     }
-    //Checks if a connection i avaible and then read all information from the arduino.
+    //Checks if a connection is available and then read all information from the arduino.
     private void get_data()
     {
-        if (sp.IsOpen)
+        if (SerialPort_Nano.IsOpen &&SerialPort_Duo.IsOpen)
         {
             try
             {
@@ -73,17 +77,17 @@ public class Arduino : MonoBehaviour {
     //Reads information from the ardunio and then decrypts the information and puts the correct information into the right variables.
     public void ArduinoDecrypter()
     {
-        Debug.Log("HEj");
-        string NewLine = sp.ReadLine();
-        Debug.Log(NewLine);
-        Debug.Log(NewLine.Length);
-        // Only reads the string if it is  characters long. It is because the information lost in transmission
-        if (NewLine.Length == 15)
+       
+        string Nano_read = SerialPort_Nano.ReadLine();
+        string Duo_read = SerialPort_Duo.ReadLine();
+        Debug.Log(Duo_read);
+        // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
+        if (Nano_read.Length == 11)
         {
-            for (int i = 0; i < NewLine.Length - 1; i++)
+            for (int i = 0; i < Nano_read.Length - 1; i++)
             {
                 //Makes chars into ints.
-                controllers[i] = (int)(NewLine[i] - '0');
+                controllers[i] = (int)(Nano_read[i] - '0');
             }
             //Add the state into the buttons.
             for (int i = 0; i < 10; i = i + 2)
@@ -107,16 +111,63 @@ public class Arduino : MonoBehaviour {
                     buttons_light[i / 2] = false;
                 }
             }
-            //Adds the joystick state into the joystick variable
-            for (int i = 10; i < 14; i++)
+        }
+        if (Duo_read.Length == 3)
+        {
+            for (int i = 0; i < Duo_read.Length; i++)
             {
-                if (controllers[i] == 2)
+                //Makes chars into ints.
+                controllers[i] = (int)(Duo_read[i] - '0');
+            }
+
+            //Adds the joystick state into the joystick variable
+            //lägg till horisontal och vertikal
+            for (int i = 0; i < Duo_read.Length ; i++)
+            {
+                if (controllers[i] == 0)
                 {
-                    Joystick[i - 10] = -1;
+                    Joystick[i*2] = 0;
+                    Joystick[i * 2+1] = 0;
                 }
-                else
+                else if(controllers[i] == 1)
                 {
-                    Joystick[i - 10] = controllers[i];
+                    Joystick[i * 2] = 0;
+                    Joystick[i * 2 + 1] = 1;
+                }
+                else if (controllers[i] == 2)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = 1;
+                }
+                else if (controllers[i] == 3)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = 0;
+                }
+                else if (controllers[i] == 4)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 5)
+                {
+                    Joystick[i * 2] = 0;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 6)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 7)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = 0;
+                }
+                else if (controllers[i] == 8)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = 1;
                 }
             }
         }
@@ -129,7 +180,8 @@ public class Arduino : MonoBehaviour {
     //When object is destroyed we close the stream to the arduino
     void OnDestroy()
     {
-        sp.Close();
+        SerialPort_Nano.Close();
+        SerialPort_Duo.Close();
     }
     //Return if the button is pressed or not.
     public bool ButtonPressed(int nr)
@@ -141,11 +193,11 @@ public class Arduino : MonoBehaviour {
     {
         if (light)
         {
-            sp.Write("1");
+            SerialPort_Nano.Write("1");
         }
         else
         {
-            sp.Write("0");
+            SerialPort_Nano.Write("0");
         }
     }
     //Returns the value of each axis.

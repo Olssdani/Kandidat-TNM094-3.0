@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/scene_Erik.unity
     guid: c75b38acdf6969642b844ad28c42ce9f
-  - enabled: 1
-    path: Assets/Scenes/Fueling.unity
-    guid: 6c7a17f0a855e0148a2a2e8bd74d2040
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/scene_Malin.unity
     guid: cbe07b8f3d0d9ff45b2feb5407fd1f06

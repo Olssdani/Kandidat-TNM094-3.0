@@ -171,7 +171,7 @@ void loop() {
   {
     Serial.print(data[i]);
   }
-  Serial.print(" ");
+  Serial.println(" ");
 
 }
 
