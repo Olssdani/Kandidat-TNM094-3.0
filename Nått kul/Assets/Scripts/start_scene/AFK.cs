@@ -9,6 +9,6 @@ public class AFK : MonoBehaviour {
 	}
 	
 	void Update () {
-        print(Time.realtimeSinceStartup);
+        //print(Time.realtimeSinceStartup);
 	}
 }

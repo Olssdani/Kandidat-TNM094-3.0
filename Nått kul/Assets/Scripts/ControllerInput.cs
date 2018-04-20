@@ -16,9 +16,9 @@ public class ControllerInput {
     public float GetAxis(string Joystick_name, string type)
     {
         string temp = Joystick_name + "_" + type;
-        
         if (Arduino.instance.GetAxis(temp) != 0)
         {
+            
             return Arduino.instance.GetAxis(temp);
         }
         else
