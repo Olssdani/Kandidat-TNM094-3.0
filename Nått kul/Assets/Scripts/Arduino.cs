@@ -22,12 +22,12 @@ public class Arduino : MonoBehaviour {
     public static Arduino instance = null;
     //A serialport to the ardunio
     private SerialPort SerialPort_Nano = new SerialPort("COM3", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
-    private SerialPort SerialPort_Duo = new SerialPort("COM6", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Duo = new SerialPort("COM6", 115200); //(9600)  Opens a connection between Unity and a Serialport. 
     //Buttons and joysticks
     bool [] buttons = new bool[5] { false, false, false, false, false };
     bool [] buttons_light = new bool[5] { false, false, false, false, false };
     private int[] Joystick = new int[4] { 0, 0, 0, 0 };
-    private int[] controllers = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //skriv som temporär istället
+    //private int[] controllers = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //skriv som temporär istället
 
     /*****************************************************
     ****************Functions implementation**************
@@ -66,9 +66,18 @@ public class Arduino : MonoBehaviour {
             }
             catch (System.TimeoutException)
             {
-                Debug.Log("Timeout");
+                Debug.Log("TimeoutNano");
             }
-        }
+            try
+            {
+                ArduinoDuoDecrypter();
+            }
+                catch (System.TimeoutException)
+            {
+                Debug.Log("TimeoutDuo");
+            }
+
+            }
         else
         {
             open();
@@ -77,10 +86,10 @@ public class Arduino : MonoBehaviour {
     //Reads information from the ardunio and then decrypts the information and puts the correct information into the right variables.
     public void ArduinoDecrypter()
     {
-       
+        int[] controllers = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         string Nano_read = SerialPort_Nano.ReadLine();
-        string Duo_read = SerialPort_Duo.ReadLine();
-        Debug.Log(Duo_read);
+        //string Duo_read = SerialPort_Duo.ReadLine();
+        //Debug.Log(Duo_read);
         // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
         if (Nano_read.Length == 11)
         {
@@ -112,7 +121,7 @@ public class Arduino : MonoBehaviour {
                 }
             }
         }
-        if (Duo_read.Length == 3)
+        /*if (Duo_read.Length == 3)
         {
             for (int i = 0; i < Duo_read.Length; i++)
             {
@@ -170,9 +179,76 @@ public class Arduino : MonoBehaviour {
                     Joystick[i * 2 + 1] = 1;
                 }
             }
+        }*/
+    }
+    public void ArduinoDuoDecrypter()
+    {
+        int[] controllers = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        string Duo_read = SerialPort_Duo.ReadLine();
+        Debug.Log(Duo_read);
+        // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
+        if (Duo_read.Length == 3)
+        {
+            for (int i = 0; i < Duo_read.Length; i++)
+            {
+                //Makes chars into ints.
+                controllers[i] = (int)(Duo_read[i] - '0');
+            }
+
+            //Adds the joystick state into the joystick variable
+            //lägg till horisontal och vertikal
+            for (int i = 0; i < Duo_read.Length; i++)
+            {
+                if (controllers[i] == 0)
+                {
+                    Joystick[i * 2] = 0;
+                    Joystick[i * 2 + 1] = 0;
+                }
+                else if (controllers[i] == 1)
+                {
+                    Joystick[i * 2] = 0;
+                    Joystick[i * 2 + 1] = 1;
+                }
+                else if (controllers[i] == 2)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = 1;
+                }
+                else if (controllers[i] == 3)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = 0;
+                }
+                else if (controllers[i] == 4)
+                {
+                    Joystick[i * 2] = 1;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 5)
+                {
+                    Joystick[i * 2] = 0;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 6)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = -1;
+                }
+                else if (controllers[i] == 7)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = 0;
+                }
+                else if (controllers[i] == 8)
+                {
+                    Joystick[i * 2] = -1;
+                    Joystick[i * 2 + 1] = 1;
+                }
+            }
         }
     }
-    
+
+
     // Update is called once per frame and reupdate the data.
     void Update () {        
         get_data();
@@ -203,8 +279,10 @@ public class Arduino : MonoBehaviour {
     //Returns the value of each axis.
     public int GetAxis(string axis)
     {
+       
         if(axis == "Left_Horizontal")
         {
+            Debug.Log(Joystick[0]);
             return Joystick[0];
         }else if(axis == "Left_Vertical")
         {

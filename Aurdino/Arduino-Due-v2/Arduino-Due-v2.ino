@@ -66,7 +66,7 @@ void setup() {
   // Reads the initial state of the outputA
   aLastState = digitalRead(outputA);*/
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
