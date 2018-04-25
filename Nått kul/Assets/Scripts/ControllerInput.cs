@@ -18,7 +18,6 @@ public class ControllerInput {
         string temp = Joystick_name + "_" + type;
         if (Arduino.instance.GetAxis(temp) != 0)
         {
-            
             return Arduino.instance.GetAxis(temp);
         }
         else
