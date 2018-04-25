@@ -22,12 +22,16 @@ public class Arduino : MonoBehaviour {
     public static Arduino instance = null;
     //A serialport to the ardunio
     private SerialPort SerialPort_Nano = new SerialPort("COM3", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
-    private SerialPort SerialPort_Duo = new SerialPort("COM6", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Duo = new SerialPort("COM6", 115200); //(9600)  Opens a connection between Unity and a Serialport. 
     //Buttons and joysticks
     bool [] buttons = new bool[5] { false, false, false, false, false };
     bool [] buttons_light = new bool[5] { false, false, false, false, false };
-    private int[] Joystick = new int[4] { 0, 0, 0, 0 };
-    private int[] controllers = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //skriv som temporär istället
+    private float[] Joystick = new float[4] { 0, 0, 0, 0 };
+
+    //Time constants
+    float delta;
+    float time;
+    float exponent = 0.5f;
 
     /*****************************************************
     ****************Functions implementation**************
@@ -66,9 +70,18 @@ public class Arduino : MonoBehaviour {
             }
             catch (System.TimeoutException)
             {
-                Debug.Log("Timeout");
+                Debug.Log("TimeoutNano");
             }
-        }
+            try
+            {
+                ArduinoDuoDecrypter();
+            }
+                catch (System.TimeoutException)
+            {
+                Debug.Log("TimeoutDuo");
+            }
+
+            }
         else
         {
             open();
@@ -77,10 +90,10 @@ public class Arduino : MonoBehaviour {
     //Reads information from the ardunio and then decrypts the information and puts the correct information into the right variables.
     public void ArduinoDecrypter()
     {
-       
+        int[] controllers = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         string Nano_read = SerialPort_Nano.ReadLine();
-        string Duo_read = SerialPort_Duo.ReadLine();
-        Debug.Log(Duo_read);
+        //string Duo_read = SerialPort_Duo.ReadLine();
+        //Debug.Log(Duo_read);
         // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
         if (Nano_read.Length == 11)
         {
@@ -112,6 +125,12 @@ public class Arduino : MonoBehaviour {
                 }
             }
         }
+    }
+    public void ArduinoDuoDecrypter()
+    {
+        int[] controllers = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        string Duo_read = SerialPort_Duo.ReadLine();
+        // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
         if (Duo_read.Length == 3)
         {
             for (int i = 0; i < Duo_read.Length; i++)
@@ -122,57 +141,70 @@ public class Arduino : MonoBehaviour {
 
             //Adds the joystick state into the joystick variable
             //lägg till horisontal och vertikal
-            for (int i = 0; i < Duo_read.Length ; i++)
+            for (int i = 0; i < Duo_read.Length; i++)
             {
+                delta = Time.time - time;
                 if (controllers[i] == 0)
                 {
-                    Joystick[i*2] = 0;
-                    Joystick[i * 2+1] = 0;
+                    time = Time.time;
+                    Joystick[i * 2] = deceleration(Joystick[i * 2]);
+                    Joystick[i * 2 + 1] = deceleration(Joystick[i * 2 + 1]);
                 }
-                else if(controllers[i] == 1)
+                else if (controllers[i] == 1)
                 {
-                    Joystick[i * 2] = 0;
-                    Joystick[i * 2 + 1] = 1;
+                    Joystick[i * 2] = deceleration(Joystick[i * 2]);
+                    Joystick[i * 2 + 1] += 1 * (float)Math.Pow(delta, exponent);
                 }
                 else if (controllers[i] == 2)
                 {
-                    Joystick[i * 2] = 1;
-                    Joystick[i * 2 + 1] = 1;
+                    Joystick[i * 2] += 1 * (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] += 1 * (float)Math.Pow(delta, exponent);
                 }
                 else if (controllers[i] == 3)
                 {
-                    Joystick[i * 2] = 1;
-                    Joystick[i * 2 + 1] = 0;
+                    Joystick[i * 2] += 1* (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] = deceleration(Joystick[i * 2 + 1]);
                 }
                 else if (controllers[i] == 4)
                 {
-                    Joystick[i * 2] = 1;
-                    Joystick[i * 2 + 1] = -1;
+                    Joystick[i * 2] += 1 * (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] += -1 * (float)Math.Pow(delta, exponent);
                 }
                 else if (controllers[i] == 5)
                 {
-                    Joystick[i * 2] = 0;
-                    Joystick[i * 2 + 1] = -1;
+                    Joystick[i * 2] = deceleration(Joystick[i * 2]);
+                    Joystick[i * 2 + 1] += -1 * (float)Math.Pow(delta, exponent);
                 }
                 else if (controllers[i] == 6)
                 {
-                    Joystick[i * 2] = -1;
-                    Joystick[i * 2 + 1] = -1;
+                    Joystick[i * 2] += -1 * (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] += -1 * (float)Math.Pow(delta, exponent);
                 }
                 else if (controllers[i] == 7)
                 {
-                    Joystick[i * 2] = -1;
-                    Joystick[i * 2 + 1] = 0;
+                    Joystick[i * 2] += -1 * (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] = deceleration(Joystick[i * 2 + 1]);
                 }
                 else if (controllers[i] == 8)
                 {
-                    Joystick[i * 2] = -1;
-                    Joystick[i * 2 + 1] = 1;
+                    Joystick[i * 2] += -1 * (float)Math.Pow(delta, exponent);
+                    Joystick[i * 2 + 1] += 1 * (float)Math.Pow(delta, exponent);
                 }
             }
+            for (int i =0; i<4; i++)
+            {
+                if(Joystick[i] >0 && Joystick[i] > 1)
+                {
+                    Joystick[i] = 1;
+                }else if (Joystick[i] < 0 && Joystick[i] < -1)
+                {
+                    Joystick[i] = -1;
+                }
+            } 
         }
     }
-    
+
+
     // Update is called once per frame and reupdate the data.
     void Update () {        
         get_data();
@@ -201,8 +233,9 @@ public class Arduino : MonoBehaviour {
         }
     }
     //Returns the value of each axis.
-    public int GetAxis(string axis)
+    public float GetAxis(string axis)
     {
+       
         if(axis == "Left_Horizontal")
         {
             return Joystick[0];
@@ -218,5 +251,37 @@ public class Arduino : MonoBehaviour {
             return Joystick[3];
         }
         return 0;
+    }
+
+    private float deceleration(float speed)
+    {
+        float aplha = 0.0001f;
+        if(speed < 0)
+        {
+            float result = speed + 1 * (float)Math.Pow(delta, exponent);
+            if (result > 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return result;
+            }
+
+        }
+        else
+        {
+            float result = speed - 1 * (float)Math.Pow(delta, exponent);
+            if (result > 0)
+            {
+                return result;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+       
+       
     }
 }
