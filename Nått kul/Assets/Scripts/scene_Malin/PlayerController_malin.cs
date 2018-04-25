@@ -86,7 +86,7 @@ public class PlayerController_malin : MonoBehaviour
 		transform.rotation = Quaternion.Euler(desiredRot);
 
 
-		if (Input.GetKey ("space")) 
+        if (controller.ButtonPressed("Button1") )
 		{
 			g = 9.82f * testar;
 		} 

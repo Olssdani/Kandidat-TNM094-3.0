@@ -9,7 +9,7 @@ public class AFK : MonoBehaviour {
     float time, stopTime;
 
 	void Start () {
-        stopTime = 0;
+        stopTime = 0.0f;
 	}
 	
 	void Update () {
@@ -22,8 +22,11 @@ public class AFK : MonoBehaviour {
 
         if(time >= 60.0f)
         {
+            stopTime = 0.0f;
             Initiate.Fade("start_scene", Color.black, 2.0f);
         }
+
+
 
 	}
 }
