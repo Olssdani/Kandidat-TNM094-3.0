@@ -7,7 +7,7 @@
  * The script should be placed on the object that you would 
  * like to pick up. 
  * 
- * Code review by: 
+ * Code review by: Thobias
  * ***********************************************************/
 
 using System.Collections;

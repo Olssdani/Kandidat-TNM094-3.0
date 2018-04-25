@@ -7,7 +7,7 @@
  * pressing the 'D' key. 
  * 
  * 
- * Code Review: 
+ * Code Review: Thobias
  * 
  * 
  * 
@@ -103,21 +103,11 @@ public class switchMission_malin : MonoBehaviour {
 				mission3.SetActive (false);
 				mission4.SetActive (false);
 
-				// reset the position and rotation of the pick-up
-				pickup1.transform.position = firstpos1;
-				pickup1.transform.rotation = Quaternion.identity;
+                // reset the position of the pick-up
+                resetPos();
 
-				pickup2.transform.position = firstpos2;
-				pickup2.transform.rotation = Quaternion.identity;
-
-				pickup3.transform.position = firstpos3;
-				pickup3.transform.rotation = Quaternion.identity;
-
-				pickup4.transform.position = firstpos4;
-				pickup4.transform.rotation = Quaternion.identity;
-
-				// Show the 2nd pick-up
-				pickup1.SetActive (false);
+                // Show the 2nd pick-up
+                pickup1.SetActive (false);
 				pickup2.SetActive (true);
 				pickup3.SetActive (false);
 				pickup4.SetActive (false);
@@ -134,21 +124,11 @@ public class switchMission_malin : MonoBehaviour {
 				mission3.SetActive (true);
 				mission4.SetActive (false);
 
-				// reset the position and rotation of the pick-up
-				pickup1.transform.position = firstpos1;
-				pickup1.transform.rotation = Quaternion.identity;
+                // reset the position of the pick-up
+                resetPos();
 
-				pickup2.transform.position = firstpos2;
-				pickup2.transform.rotation = Quaternion.identity;
-
-				pickup3.transform.position = firstpos3;
-				pickup3.transform.rotation = Quaternion.identity;
-
-				pickup4.transform.position = firstpos4;
-				pickup4.transform.rotation = Quaternion.identity;
-
-				// show the 3rd pick-up
-				pickup1.SetActive (false);
+                // show the 3rd pick-up
+                pickup1.SetActive (false);
 				pickup2.SetActive (false);
 				pickup3.SetActive (true);
 				pickup4.SetActive (false);
@@ -164,27 +144,17 @@ public class switchMission_malin : MonoBehaviour {
 				mission3.SetActive (false);
 				mission4.SetActive (true);
 
-
-				// reset the position and rotation of the pick-up
-				pickup1.transform.position = firstpos1;
-				pickup1.transform.rotation = Quaternion.identity;
-
-				pickup2.transform.position = firstpos2;
-				pickup2.transform.rotation = Quaternion.identity;
-
-				pickup3.transform.position = firstpos3;
-				pickup3.transform.rotation = Quaternion.identity;
-
-				pickup4.transform.position = firstpos4;
-				pickup4.transform.rotation = Quaternion.identity;
-
 				// show the 4th pick-up
 				pickup1.SetActive (false);
 				pickup2.SetActive (false);
 				pickup3.SetActive (false);
 				pickup4.SetActive (true);
 
-				carried = GameObject.Find ("pick-up4").GetComponent<PickUpObject_malin> ().beingCarried;
+                // reset the position of the pick-up
+                resetPos();
+
+
+                carried = GameObject.Find ("pick-up4").GetComponent<PickUpObject_malin> ().beingCarried;
 
 				toggler = 0;
 			} else {
@@ -227,5 +197,21 @@ public class switchMission_malin : MonoBehaviour {
 			col_mis_pick = false;
 		}
 	}
+
+    // reset the position and rotation of the pick-up
+    void resetPos()
+    {
+        pickup1.transform.position = firstpos1;
+        pickup1.transform.rotation = Quaternion.identity;
+
+        pickup2.transform.position = firstpos2;
+        pickup2.transform.rotation = Quaternion.identity;
+
+        pickup3.transform.position = firstpos3;
+        pickup3.transform.rotation = Quaternion.identity;
+
+        pickup4.transform.position = firstpos4;
+        pickup4.transform.rotation = Quaternion.identity;
+    }
 
 }
