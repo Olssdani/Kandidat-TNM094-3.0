@@ -171,3 +171,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 3d09b0bd7560be7bcb703d838fed318e Assembly-CSharp.dll:.test_helper1
 5979ffe0c2bf5b501dafe8f7a38624e4 Assembly-CSharp.dll:.Jump
 27a6506e0081f85aae922c8e06d57886 Assembly-CSharp.dll:.switchMission_malin
+c03566925b487518a79ff2f52ad73ef1 Assembly-CSharp.dll:.skyboxspace_demo_v1
+be3b4f34e9cdc089e3fa27a7c92820ad Assembly-CSharp.dll:.skyboxspace_mouselook_v1
