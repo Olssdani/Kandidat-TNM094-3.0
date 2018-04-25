@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* **************************************************
+ * Author: Daniel
+ * This class simulation the same function that is inmplemented by unitys
+ * own Input. The only difference is that it also calls for the aurdino.
+ * 
+ * Code Review: Emma och Oliver  
+ * *************************************************/
 public class ControllerInput {
 
     //Constructor that initiate the controller
