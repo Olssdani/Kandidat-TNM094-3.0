@@ -4,7 +4,7 @@
  * Makes the missions rotate around themselfs. 
  * Script is placed on the missions. 
  * 
- * Code review: 
+ * Code review: Thobias
  * **************************************************/
 
 using System.Collections;
