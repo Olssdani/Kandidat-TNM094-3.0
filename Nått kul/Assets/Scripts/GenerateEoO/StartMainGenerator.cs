@@ -78,6 +78,8 @@ public class StartMainGenerator : MonoBehaviour {
             }
             else if ((controller.ButtonPressed("Button3")) && input1 && !input2)
             {
+				yellowFirstLight.enabled = false;
+				redLight.enabled = true;
                 input1 = false;
             } 
 
@@ -95,6 +97,12 @@ public class StartMainGenerator : MonoBehaviour {
             light_red.GetComponent<Renderer>().material = noGlow;
             light_green.GetComponent<Renderer>().material = noGlow;
             light_blue.GetComponent<Renderer>().material = noGlow;
+			redLight.enabled = false;
+			blueLight.enabled = false;
+			greenLight.enabled = false;
+			yellowFirstLight.enabled = false;
+			yellowSecondLight.enabled = false;
+			yellowThirdLight.enabled = false;
             input1 = input2 = false;
         }
         else
