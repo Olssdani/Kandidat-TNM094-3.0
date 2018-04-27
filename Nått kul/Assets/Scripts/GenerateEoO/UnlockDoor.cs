@@ -93,7 +93,7 @@ public class UnlockDoor : MonoBehaviour {
             cableRed.GetComponent<Renderer>().material = GlowRed;
 
 
-			if (Input.GetKey (KeyCode.Z)) {
+			if (Input.GetKey (KeyCode.Z) && nearby) {
 				counterRed = 0;
 
 				//materials
@@ -107,7 +107,7 @@ public class UnlockDoor : MonoBehaviour {
 				thirdLightRed.enabled = false;
 			}
 
-			if (Input.GetKey (KeyCode.C)) {
+			if (Input.GetKey (KeyCode.C) && nearby) {
 				++counterRed;
 				if (counterRed > 10 && counterRed <= 20) {
 					loadFirstRed.GetComponent<Renderer> ().material = GlowRed;
@@ -126,7 +126,6 @@ public class UnlockDoor : MonoBehaviour {
 
 				}
 			}
-			Debug.Log (counterRed);
 				
 
 			if (nearby && counterRed > 30)
@@ -139,7 +138,7 @@ public class UnlockDoor : MonoBehaviour {
         {
             cableGreen.GetComponent<Renderer>().material = GlowGreen;
 
-			if (Input.GetKey (KeyCode.C)) {
+			if (Input.GetKey(KeyCode.C) && nearby) {
 				counterGreen = 0;
 
 				//materials
@@ -148,12 +147,12 @@ public class UnlockDoor : MonoBehaviour {
 				loadThirdGreen.GetComponent<Renderer> ().material = TurnOffGreen;
 
 				//lights
-				firstLightGreen.enabled = true;
-				secondLightGreen.enabled = true;
-				thirdLightGreen.enabled = true;
+				firstLightGreen.enabled = false;
+				secondLightGreen.enabled = false;
+				thirdLightGreen.enabled = false;
 			}
 
-			if (Input.GetKey (KeyCode.Z)) {
+			if (Input.GetKey(KeyCode.Z) && nearby) {
 				++counterGreen;
 				if (counterGreen > 10 && counterGreen <= 20) {
 					loadFirstGreen.GetComponent<Renderer> ().material = GlowGreen;

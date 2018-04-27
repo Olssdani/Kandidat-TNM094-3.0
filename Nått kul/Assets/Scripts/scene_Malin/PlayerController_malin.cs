@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class PlayerController_malin : MonoBehaviour
 {
+    ControllerInput controller = new ControllerInput();
 
 	public float testar;
 
@@ -35,10 +36,9 @@ public class PlayerController_malin : MonoBehaviour
 
     void Update()
 	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-
-
+        //Get movement in horizontal and vertical
+        float moveHorizontal = controller.GetAxis("Left", "Horizontal");
+        float moveVertical = controller.GetAxis("Left", "Vertical");
 
 		z = transform.eulerAngles.z;
 		x = transform.eulerAngles.x;
@@ -86,7 +86,7 @@ public class PlayerController_malin : MonoBehaviour
 		transform.rotation = Quaternion.Euler(desiredRot);
 
 
-		if (Input.GetKey ("space")) 
+        if (controller.ButtonPressed("Button1") )
 		{
 			g = 9.82f * testar;
 		} 
@@ -108,7 +108,7 @@ public class PlayerController_malin : MonoBehaviour
 
 		Vector3 currRot = gameObject.transform.rotation.eulerAngles;
 
-		Debug.Log ("curr.y = " + currRot.y);
+		//Debug.Log ("curr.y = " + currRot.y);
 
 		// If the right arrow is pressed get the character to face the right
 		if (Input.GetKey (KeyCode.RightArrow) && currRot.y != 90) 

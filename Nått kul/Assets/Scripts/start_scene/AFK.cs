@@ -26,7 +26,7 @@ public class AFK : MonoBehaviour {
             Initiate.Fade("start_scene", Color.black, 2.0f);
         }
 
-        print(time);
+
 
 	}
 }

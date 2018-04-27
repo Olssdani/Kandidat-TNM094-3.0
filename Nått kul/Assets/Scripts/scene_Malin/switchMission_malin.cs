@@ -100,8 +100,6 @@ public class switchMission_malin : MonoBehaviour {
 				// show the 2nd mission
 				mission1.SetActive (false);
 				mission2.SetActive (true);
-				mission3.SetActive (false);
-				mission4.SetActive (false);
 
                 // reset the position of the pick-up
                 resetPos();
@@ -109,29 +107,22 @@ public class switchMission_malin : MonoBehaviour {
                 // Show the 2nd pick-up
                 pickup1.SetActive (false);
 				pickup2.SetActive (true);
-				pickup3.SetActive (false);
-				pickup4.SetActive (false);
 
 				carried = GameObject.Find ("pick-up2").GetComponent<PickUpObject_malin> ().beingCarried;
 
 				// toggle to know the 2nd mission is active.
 				toggler = 2;
 			} else if (toggler == 2) {
-
 				// show the 3rd mission
-				mission1.SetActive (false);
 				mission2.SetActive (false);
 				mission3.SetActive (true);
-				mission4.SetActive (false);
 
                 // reset the position of the pick-up
                 resetPos();
 
                 // show the 3rd pick-up
-                pickup1.SetActive (false);
 				pickup2.SetActive (false);
 				pickup3.SetActive (true);
-				pickup4.SetActive (false);
 
 				carried = GameObject.Find ("pick-up3").GetComponent<PickUpObject_malin> ().beingCarried;
 
@@ -139,14 +130,10 @@ public class switchMission_malin : MonoBehaviour {
 			} else if (toggler == 3) {
 
 				// show the 4th mission
-				mission1.SetActive (false);
-				mission2.SetActive (false);
 				mission3.SetActive (false);
 				mission4.SetActive (true);
 
 				// show the 4th pick-up
-				pickup1.SetActive (false);
-				pickup2.SetActive (false);
 				pickup3.SetActive (false);
 				pickup4.SetActive (true);
 
