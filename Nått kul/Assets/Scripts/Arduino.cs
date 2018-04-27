@@ -255,7 +255,6 @@ public class Arduino : MonoBehaviour {
 
     private float deceleration(float speed)
     {
-        float aplha = 0.0001f;
         if(speed < 0)
         {
             float result = speed + 1 * (float)Math.Pow(delta, exponent);
