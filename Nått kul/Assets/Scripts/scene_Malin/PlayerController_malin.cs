@@ -39,28 +39,29 @@ public class PlayerController_malin : MonoBehaviour
         //Get movement from left joystick
         float moveHorizontal = controller.GetAxis("Left", "Horizontal");
         float moveVertical = controller.GetAxis("Left", "Vertical");
-        
-        if(moveHorizontal < 0 )
+
+        //Move player facing
+        if(moveHorizontal < 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y - 270) > 0.01)
         {
-            Debug.Log(this.gameObject.transform.rotation);
-            this.gameObject.transform.Rotate(0,90,0);
-        }else if (moveHorizontal > 0)
+            this.gameObject.transform.Rotate(0,180,0);
+        }else if (moveHorizontal > 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y- 90)>0.01)
         {
-            this.gameObject.transform.Rotate(0, -90, 0);
+            this.gameObject.transform.Rotate(0, 180, 0);
         }
 
         //Set up movement to 0 because the thrusters must be pressed
-        if (moveVertical > 0f)
+        /*if (moveVertical > 0f)
         {
              moveVertical = 0f;
-        }
+        }*/
         //Gives a value to the vertical movement if the thruster button is pressed
-        if (controller.ButtonPressed("Button4") )
+       /* if (controller.ButtonPressed("Button4") )
         {
             moveVertical = 1.0f;
-        }
+        }*/
 
         Vector3 movement;
+       
         //Caps the maximum velocity
         if(Mathf.Abs(rb.velocity[0]) > MaxSpeed && Mathf.Abs(rb.velocity[1]) > MaxSpeed)
         {
@@ -78,7 +79,8 @@ public class PlayerController_malin : MonoBehaviour
         {
             movement = new Vector3(moveHorizontal * Horizontalspeed, moveVertical * Verticalspeed, 0.0f);
         }
-    
+        
+        //Add the force to the player
         rb.AddForce(movement);
        
         
