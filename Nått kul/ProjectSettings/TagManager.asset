@@ -6,6 +6,11 @@ TagManager:
   tags:
   - mission
   - Pick-up
+  - Zone
+  - Cable Red
+  - Cable Green
+  - Battery
+  - Arm
   layers:
   - Default
   - TransparentFX
