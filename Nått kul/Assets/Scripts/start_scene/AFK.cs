@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AFK : MonoBehaviour {
 
+    ControllerInput controller = new ControllerInput();
     float time, stopTime;
 
 	void Start () {
@@ -15,7 +16,7 @@ public class AFK : MonoBehaviour {
 	void Update () {
         time = Time.realtimeSinceStartup - stopTime;
 
-        if(Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f)
+        if(controller.GetAxis("Left", "Horizontal") != 0.0f || controller.GetAxis("Left","Vertical") != 0.0f)
         {
             stopTime = Time.realtimeSinceStartup;
         }
@@ -25,8 +26,5 @@ public class AFK : MonoBehaviour {
             stopTime = 0.0f;
             Initiate.Fade("start_scene", Color.black, 2.0f);
         }
-
-
-
 	}
 }

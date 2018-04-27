@@ -1,7 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* **************************************************
+ * Author: Daniel 
+ * 
+ * Controlls the missions and check if the level is completed
+ * 
+ * Code review:
+ * 
+ * *************************************************/
 public class Mission_Controller : MonoBehaviour {
     bool[] objectiv = new bool[4] { false, false, false, false };
     bool[] mission_completed = new bool[4] { false, false, false, false };
@@ -13,7 +20,10 @@ public class Mission_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(mission_completed[0] && mission_completed[1]&& mission_completed[2] && mission_completed[3])
+        {
+            Initiate.Fade("start_scene", Color.black, 2.0f);
+        }
 	}
 
     //Gives back if the object should be showing
@@ -33,7 +43,4 @@ public class Mission_Controller : MonoBehaviour {
             objectiv[nr+1] = true;
         }
     }
-
-
-
 }

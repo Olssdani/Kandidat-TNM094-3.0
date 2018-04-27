@@ -101,6 +101,21 @@ public class ControllerInput {
                 return Input.GetKey(KeyCode.Keypad4);
             }
         }
+        else if(Button == "Button5")
+        {
+            if (Arduino.instance.ButtonPressed(5))
+            {
+                return Arduino.instance.ButtonPressed(5);
+            }
+            else if (Input.GetButton(Button))
+            {
+                return Input.GetButton(Button);
+            }
+            else if (Input.GetKey(KeyCode.Keypad5))
+            {
+                return Input.GetKey(KeyCode.Keypad5);
+            }
+        }
         else
         {
             Debug.Log("Error: Wrong input, check argument for function ControllerInput.ButtonPressed"); 
