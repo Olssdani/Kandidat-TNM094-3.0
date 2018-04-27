@@ -11,6 +11,8 @@ using UnityEngine;
  * 
  * *************************************************/
 public class Indicator : MonoBehaviour {
+    
+    public ParticleSystem leak;
     //Leak number
     public int nr;
     //Script that controll all the pick ups and leaks
@@ -26,6 +28,7 @@ public class Indicator : MonoBehaviour {
         //If mission is active, render the object
         if (mission_controller.show(nr))
         {
+            leak.Play();
             this.GetComponent<Renderer>().enabled = true;
         }
 	}

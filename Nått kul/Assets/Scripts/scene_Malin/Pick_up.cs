@@ -20,6 +20,8 @@ public class Pick_up : MonoBehaviour {
     //True if the object is carried
     private bool IsCarried;
     private bool able_for_pickup = false;
+    //See if it is the first time 
+    private bool first_time;
     //The object that the pickup collid with
     GameObject player;
     //Time variabels
@@ -31,26 +33,33 @@ public class Pick_up : MonoBehaviour {
         //Set rendering to false
         this.GetComponent<Renderer>().enabled = false;
         IsCarried = false;
+        first_time = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //Only check against object that is shown
-        if (mission_controller.show(nr))
+        if (mission_controller.show(nr)&& first_time)
+        {
+            first_time = false;
+            GetComponent<Rigidbody>().AddForce(-5.0f, 0, 0, ForceMode.Impulse);
+
+        }
+            //Only check against object that is shown
+            if (mission_controller.show(nr))
         {
             //Render object and get delta time 
             delta = Time.time - start;
             this.GetComponent<Renderer>().enabled = true;
 
             //Drop object
-            if (controller.ButtonPressed("Button2")  && IsCarried && delta>1.0f)
+            if (controller.ButtonPressed("Button4")  && IsCarried && delta>1.0f)
             {
                 start = Time.time;
                 this.gameObject.transform.parent = null;
                 IsCarried = false;
             }
             // Pick up object
-            else  if (controller.ButtonPressed("Button2") && !IsCarried && able_for_pickup && delta > 1.0f)
+            else  if (controller.ButtonPressed("Button4") && !IsCarried && able_for_pickup && delta > 1.0f)
             {
                 start = Time.time;
                 this.gameObject.transform.parent =player.transform ;
