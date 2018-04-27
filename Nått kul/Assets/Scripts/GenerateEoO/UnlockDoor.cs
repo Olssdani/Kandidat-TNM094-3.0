@@ -9,9 +9,9 @@ public class UnlockDoor : MonoBehaviour {
 	//objects
     public GameObject door1;
     public GameObject door2;
-    public GameObject cableRed;
+    public GameObject cableWhite;
     public GameObject cableGreen;
-    public GameObject numpadRed;
+    public GameObject numpadWhite;
     public GameObject numpadGreen;
 	public GameObject loadFirstRed;
 	public GameObject loadSecondRed;
@@ -26,7 +26,7 @@ public class UnlockDoor : MonoBehaviour {
     private Vector3 endMarker2;
     public float distance = 10;
     public float speed = 1.0F;
-    public bool UnlockRed;
+    public bool UnlockWhite;
     public bool UnlockGreen;
 
 	//materials
@@ -90,10 +90,10 @@ public class UnlockDoor : MonoBehaviour {
 	void Update () {
 		if (controller.ButtonPressed("Button2") && GameObject.Find("Inserted_Battery_Red").GetComponent<Battery_insert>().insert)
         {
-            cableRed.GetComponent<Renderer>().material = GlowRed;
+            cableWhite.GetComponent<Renderer>().material = GlowRed;
 
 
-			if (Input.GetKey (KeyCode.Z) && nearby) {
+			/*if (controller.ButtonPressed("Button4") && nearby) {
 				counterRed = 0;
 
 				//materials
@@ -105,9 +105,9 @@ public class UnlockDoor : MonoBehaviour {
 				firstLightRed.enabled = false;
 				secondLightRed.enabled = false;
 				thirdLightRed.enabled = false;
-			}
+			} */
 
-			if (Input.GetKey (KeyCode.C) && nearby) {
+			if (controller.ButtonPressed("Button4") && nearby) {
 				++counterRed;
 				if (counterRed > 10 && counterRed <= 20) {
 					loadFirstRed.GetComponent<Renderer> ().material = GlowRed;
@@ -130,15 +130,15 @@ public class UnlockDoor : MonoBehaviour {
 
 			if (nearby && counterRed > 30)
             {
-                UnlockRed = true;
+                UnlockWhite = true;
             }
 
         }
-		else if (controller.ButtonPressed("Button3") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insert)
+		else if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insert)
         {
             cableGreen.GetComponent<Renderer>().material = GlowGreen;
 
-			if (Input.GetKey(KeyCode.C) && nearby) {
+			/*if (controller.ButtonPressed("Button4") && nearby) {
 				counterGreen = 0;
 
 				//materials
@@ -150,9 +150,9 @@ public class UnlockDoor : MonoBehaviour {
 				firstLightGreen.enabled = false;
 				secondLightGreen.enabled = false;
 				thirdLightGreen.enabled = false;
-			}
+			} */
 
-			if (Input.GetKey(KeyCode.Z) && nearby) {
+			if (controller.ButtonPressed("Button4") && nearby) {
 				++counterGreen;
 				if (counterGreen > 10 && counterGreen <= 20) {
 					loadFirstGreen.GetComponent<Renderer> ().material = GlowGreen;
@@ -179,11 +179,11 @@ public class UnlockDoor : MonoBehaviour {
         else
         {
             cableGreen.GetComponent<Renderer>().material = TurnOffGreen;
-            cableRed.GetComponent<Renderer>().material = TurnOffRed;
+            cableWhite.GetComponent<Renderer>().material = TurnOffRed;
         }
 
         
-        if (UnlockRed && UnlockGreen)
+        if (UnlockWhite && UnlockGreen)
         {
             Open();
         }      

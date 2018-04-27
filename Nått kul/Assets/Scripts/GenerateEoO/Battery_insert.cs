@@ -40,12 +40,12 @@ public class Battery_insert : MonoBehaviour {
 
         }
 
-		if (!(insert) && controller.ButtonPressed ("Button1")) {
+		if (!(insert) && controller.ButtonPressed ("Button2")) {
 			//anim.Play ("Particle-System-Thobias");
 			sprakWhite.Emit(10);
 		}
 
-		if (!(insert) && controller.ButtonPressed ("Button2")) {
+		if (!(insert) && controller.ButtonPressed ("Button1")) {
 			//anim.Play ("Particle-System-Thobias");
 			sprakGreen.Emit(10);
 		}

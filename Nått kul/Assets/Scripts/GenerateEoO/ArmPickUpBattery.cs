@@ -42,7 +42,7 @@ public class ArmPickUpBattery : MonoBehaviour {
 		if (beingCarried)
 		{
 			//Press Z to release object
-			if (controller.ButtonPressed("Button4") && hasArm)
+			if (controller.ButtonPressed("Button5") && hasArm)
 			{
 				rb.isKinematic = false;
 				transform.parent = null;
@@ -52,11 +52,11 @@ public class ArmPickUpBattery : MonoBehaviour {
 		else
 		{
 			//Picks up the object
-			if (controller.ButtonPressed("Button4") && hasArm)
+			if (controller.ButtonPressed("Button5") && hasArm)
 			{
-				// Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
+                Debug.Log("Hararm");
+                // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
 				rb.isKinematic = true;
-
 				transform.parent = arm; // Sets the player to parent so that the object will follow it around
 				beingCarried = true; // Used for if statement above
 			}
