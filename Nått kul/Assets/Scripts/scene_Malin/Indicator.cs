@@ -11,7 +11,8 @@ using UnityEngine;
  * 
  * *************************************************/
 public class Indicator : MonoBehaviour {
-    
+    ControllerInput controller = new ControllerInput();
+
     public ParticleSystem leak;
     //Leak number
     public int nr;
@@ -29,7 +30,8 @@ public class Indicator : MonoBehaviour {
         if (mission_controller.show(nr))
         {
             leak.Play();
-            this.GetComponent<Renderer>().enabled = true;
+            //hide oject
+            //this.GetComponent<Renderer>().enabled = true;
         }
 	}
 
@@ -38,10 +40,13 @@ public class Indicator : MonoBehaviour {
         if (other.gameObject.CompareTag("Pick-up"))
         {
             //If the leak has collid with the pick up and the pick isn't carried we disable the rendering
-            if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
+            //if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
+            if (mission_controller.show(nr) && other.gameObject.GetComponent<Pick_up>().Carried() && controller.ButtonPressed("Button3"))
             {
+                Debug.Log("Cleared " + nr);
                 mission_controller.cleared(nr);
-                this.GetComponent<Renderer>().enabled = false;
+                leak.Stop();
+                //this.GetComponent<Renderer>().enabled = false;
             }
         }
     }
