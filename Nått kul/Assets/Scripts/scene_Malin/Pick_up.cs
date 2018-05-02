@@ -37,15 +37,15 @@ public class Pick_up : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (mission_controller.show(nr)&& first_time)
         {
             first_time = false;
             GetComponent<Rigidbody>().AddForce(-5.0f, 0, 0, ForceMode.Impulse);
 
         }
-            //Only check against object that is shown
-            if (mission_controller.show(nr))
+        //Only check against object that is shown
+        if (mission_controller.show(nr))
         {
             //Render object and get delta time 
             delta = Time.time - start;
@@ -55,15 +55,20 @@ public class Pick_up : MonoBehaviour {
             if (controller.ButtonPressed("Button4")  && IsCarried && delta>1.0f)
             {
                 start = Time.time;
-                this.gameObject.transform.parent = null;
                 IsCarried = false;
+                this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
             }
             // Pick up object
             else  if (controller.ButtonPressed("Button4") && !IsCarried && able_for_pickup && delta > 1.0f)
             {
                 start = Time.time;
-                this.gameObject.transform.parent =player.transform ;
+                this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                 IsCarried = true;
+                this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
+            }
+            else if (IsCarried)
+            {
+                this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
             }
         }
         else
@@ -76,10 +81,13 @@ public class Pick_up : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (mission_controller.show(nr))
         {
+            
             // Make object able for pickup
             if (other.gameObject.CompareTag("Player"))
+              
             {
                 player = other.gameObject;
                 able_for_pickup = true;
