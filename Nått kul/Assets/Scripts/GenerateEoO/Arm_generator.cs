@@ -60,13 +60,8 @@ public class Arm_generator : MonoBehaviour {
 			}
 		}
 
-		//Rotate arm
-//		if (!(arm.transform.rotation.eulerAngles.y > 360 && controller.GetAxis("Right", "Horizontal") > 0) &&
-//			!(arm.transform.rotation.eulerAngles.y < 0 && controller.GetAxis("Right", "Horizontal") < 0) && counter ==0)
-//		{
-//			counter = 0;
-			arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
-//		}
+		arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
+
 
 	}
 

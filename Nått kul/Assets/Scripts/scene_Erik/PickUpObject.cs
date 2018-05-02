@@ -61,7 +61,7 @@ public class PickUpObject : MonoBehaviour {
         if (beingCarried)
         {
             //Press Z to release object
-			if (Input.GetKey(KeyCode.Z) && hasPlayer)
+			if (controller.ButtonPressed("Button4") && hasPlayer)
             {
                 rb.isKinematic = false;
                 transform.parent = null;
@@ -71,7 +71,7 @@ public class PickUpObject : MonoBehaviour {
         else
         {
             //Picks up the object
-			if (Input.GetKey(KeyCode.Z) && hasPlayer)
+			if (controller.ButtonPressed("Button4") && hasPlayer)
             {
 				Debug.Log ("4a tryckt");
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects

@@ -16,8 +16,11 @@ public class PlayerController_malin : MonoBehaviour
     ControllerInput controller = new ControllerInput();
 
 	public float testar;
+    public float speed;
+    public float Verticalspeed;
+    public float Horizontalspeed;
+    public float MaxSpeed;
 
-    private float speed;
     private Rigidbody rb;
 	private float g;
 
@@ -28,15 +31,62 @@ public class PlayerController_malin : MonoBehaviour
 
     void Start()
 	{
-		speed = 10f;
         rb = GetComponent<Rigidbody>();
-
-		testar = 18f;
     }
 
-    void Update()
-	{
-        //Get movement in horizontal and vertical
+    void FixedUpdate()
+    {
+        //Get movement from left joystick
+        float moveHorizontal = controller.GetAxis("Left", "Horizontal");
+        float moveVertical = controller.GetAxis("Left", "Vertical");
+
+        //Move player facing
+        if(moveHorizontal < 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y - 270) > 0.01)
+        {
+            this.gameObject.transform.Rotate(0,180,0);
+        }else if (moveHorizontal > 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y- 90)>0.01)
+        {
+            this.gameObject.transform.Rotate(0, 180, 0);
+        }
+
+        //Set up movement to 0 because the thrusters must be pressed
+        /*if (moveVertical > 0f)
+        {
+             moveVertical = 0f;
+        }*/
+        //Gives a value to the vertical movement if the thruster button is pressed
+       /* if (controller.ButtonPressed("Button4") )
+        {
+            moveVertical = 1.0f;
+        }*/
+
+        Vector3 movement;
+       
+        //Caps the maximum velocity
+        if(Mathf.Abs(rb.velocity[0]) > MaxSpeed && Mathf.Abs(rb.velocity[1]) > MaxSpeed)
+        {
+            movement = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+        else if (Mathf.Abs(rb.velocity[0]) > MaxSpeed)
+        {
+            movement = new Vector3(0.0f, moveVertical * Verticalspeed, 0.0f);
+        }
+        else if(Mathf.Abs(rb.velocity[1]) > MaxSpeed)
+        {
+            movement = new Vector3(moveHorizontal * Horizontalspeed, 0.0f, 0.0f);
+        }
+        else
+        {
+            movement = new Vector3(moveHorizontal * Horizontalspeed, moveVertical * Verticalspeed, 0.0f);
+        }
+        
+        //Add the force to the player
+        rb.AddForce(movement);
+       
+        
+        
+        
+        /*//Get movement in horizontal and vertical
         float moveHorizontal = controller.GetAxis("Left", "Horizontal");
         float moveVertical = controller.GetAxis("Left", "Vertical");
 
@@ -121,9 +171,6 @@ public class PlayerController_malin : MonoBehaviour
 		{
 			gameObject.transform.Rotate (0, 270, 0);
 
-		}
-
-
-
-	}
+		}*/
+    }
 }
