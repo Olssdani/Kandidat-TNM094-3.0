@@ -27,11 +27,15 @@ public class Pick_up : MonoBehaviour {
     //Time variabels
     float delta = 0;
     float start = 0;
+    //Orgin position
+    public Vector3 origin;
 
     // Use this for initialization
     void Start () {
         //Set rendering to false
         this.GetComponent<Renderer>().enabled = false;
+        origin = transform.position;
+        
         IsCarried = false;
         first_time = true;
     }
@@ -56,7 +60,7 @@ public class Pick_up : MonoBehaviour {
             {
                 start = Time.time;
                 IsCarried = false;
-                this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
+                //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
             }
             // Pick up object
             else  if (controller.ButtonPressed("Button4") && !IsCarried && able_for_pickup && delta > 1.0f)
@@ -64,7 +68,7 @@ public class Pick_up : MonoBehaviour {
                 start = Time.time;
                 this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                 IsCarried = true;
-                this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
+                //this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
             }
             else if (IsCarried)
             {
@@ -74,7 +78,7 @@ public class Pick_up : MonoBehaviour {
         else
         {
             //Don't render object
-            this.GetComponent<Renderer>().enabled = false;
+           // this.GetComponent<Renderer>().enabled = false;
         }
         
     }
