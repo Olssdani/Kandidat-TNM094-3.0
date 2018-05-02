@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* **************************************************
+ * Author: Daniel
+ * This class simulation the same function that is inmplemented by unitys
+ * own Input. The only difference is that it also calls for the aurdino.
+ * 
+ * Code Review: Emma och Oliver  
+ * *************************************************/
 public class ControllerInput {
 
     //Constructor that initiate the controller
@@ -93,6 +99,21 @@ public class ControllerInput {
             else if (Input.GetKey(KeyCode.Keypad4))
             {
                 return Input.GetKey(KeyCode.Keypad4);
+            }
+        }
+        else if(Button == "Button5")
+        {
+            if (Arduino.instance.ButtonPressed(5))
+            {
+                return Arduino.instance.ButtonPressed(5);
+            }
+            else if (Input.GetButton(Button))
+            {
+                return Input.GetButton(Button);
+            }
+            else if (Input.GetKey(KeyCode.Keypad5))
+            {
+                return Input.GetKey(KeyCode.Keypad5);
             }
         }
         else

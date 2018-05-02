@@ -19,6 +19,7 @@ public class PickUpObject : MonoBehaviour {
     public bool hasPlayer = false;
     bool beingCarried = false;
     public bool inserted = false;
+	ControllerInput controller = new ControllerInput();
 
     private Rigidbody rb;
 
@@ -27,6 +28,7 @@ public class PickUpObject : MonoBehaviour {
 		// If the player is at the object it can pick it up
         if(other.gameObject.CompareTag("Player")) //will only work if the Player has it's tag set to Player in Unity!!!!!!
         {
+			Debug.Log ("har en player");
             hasPlayer = true;
         }
 
@@ -59,7 +61,7 @@ public class PickUpObject : MonoBehaviour {
         if (beingCarried)
         {
             //Press Z to release object
-            if (Input.GetKeyDown(KeyCode.Z))
+			if (controller.ButtonPressed("Button4") && hasPlayer)
             {
                 rb.isKinematic = false;
                 transform.parent = null;
@@ -69,8 +71,9 @@ public class PickUpObject : MonoBehaviour {
         else
         {
             //Picks up the object
-            if (Input.GetKeyDown(KeyCode.Z) && hasPlayer)
+			if (controller.ButtonPressed("Button4") && hasPlayer)
             {
+				Debug.Log ("4a tryckt");
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
                 rb.isKinematic = true;
 
