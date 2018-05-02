@@ -9,8 +9,10 @@ public class UnlockDoor : MonoBehaviour {
 	//objects
     public GameObject door1;
     public GameObject door2;
-    public GameObject cableWhite;
-    public GameObject cableGreen;
+    public GameObject cableWhite1;
+    public GameObject cableGreen1;
+    public GameObject cableWhite2;
+    public GameObject cableGreen2;
     public GameObject numpadWhite;
     public GameObject numpadGreen;
 	public GameObject loadFirstRed;
@@ -32,8 +34,7 @@ public class UnlockDoor : MonoBehaviour {
 	//materials
     public Material GlowRed;
     public Material GlowGreen;
-    public Material TurnOffRed;
-    public Material TurnOffGreen;
+    public Material Off;
 
 	//lights
 	public Light firstLightRed;
@@ -69,7 +70,7 @@ public class UnlockDoor : MonoBehaviour {
     void Open()
     {
         if (startTime < endTime)
-            startTime += Time.deltaTime;
+            startTime += 2*Time.deltaTime;
 
         perc = startTime / endTime;
         door1.transform.position = Vector3.Lerp(startMarker1, endMarker1, perc);
@@ -82,18 +83,19 @@ public class UnlockDoor : MonoBehaviour {
         nearby = false;
 
         startMarker1 = door1.transform.position;
-        endMarker1 = door1.transform.position + Vector3.up * distance;
+        endMarker1 = door1.transform.position + new Vector3(0, 0, -2) * distance;
         startMarker2 = door2.transform.position;
-        endMarker2 = door2.transform.position + Vector3.down * distance;
+        endMarker2 = door2.transform.position + new Vector3(0, -2, 0) * distance;
     }
 	
 	void Update () {
 		if (controller.ButtonPressed("Button2") && GameObject.Find("Inserted_Battery_Red").GetComponent<Battery_insert>().insert)
         {
-            cableWhite.GetComponent<Renderer>().material = GlowRed;
+            cableWhite1.GetComponent<Renderer>().material = GlowRed;
+            cableWhite2.GetComponent<Renderer>().material = GlowRed;
 
 
-			/*if (controller.ButtonPressed("Button4") && nearby) {
+            /*if (controller.ButtonPressed("Button4") && nearby) {
 				counterRed = 0;
 
 				//materials
@@ -107,7 +109,7 @@ public class UnlockDoor : MonoBehaviour {
 				thirdLightRed.enabled = false;
 			} */
 
-			if (controller.ButtonPressed("Button4") && nearby) {
+            if (controller.ButtonPressed("Button4") && nearby) {
 				++counterRed;
 				if (counterRed > 10 && counterRed <= 20) {
 					loadFirstRed.GetComponent<Renderer> ().material = GlowRed;
@@ -136,9 +138,10 @@ public class UnlockDoor : MonoBehaviour {
         }
 		else if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insert)
         {
-            cableGreen.GetComponent<Renderer>().material = GlowGreen;
+            cableGreen1.GetComponent<Renderer>().material = GlowGreen;
+            cableGreen2.GetComponent<Renderer>().material = GlowGreen;
 
-			/*if (controller.ButtonPressed("Button4") && nearby) {
+            /*if (controller.ButtonPressed("Button4") && nearby) {
 				counterGreen = 0;
 
 				//materials
@@ -152,7 +155,7 @@ public class UnlockDoor : MonoBehaviour {
 				thirdLightGreen.enabled = false;
 			} */
 
-			if (controller.ButtonPressed("Button4") && nearby) {
+            if (controller.ButtonPressed("Button4") && nearby) {
 				++counterGreen;
 				if (counterGreen > 10 && counterGreen <= 20) {
 					loadFirstGreen.GetComponent<Renderer> ().material = GlowGreen;
@@ -178,8 +181,10 @@ public class UnlockDoor : MonoBehaviour {
         }
         else
         {
-            cableGreen.GetComponent<Renderer>().material = TurnOffGreen;
-            cableWhite.GetComponent<Renderer>().material = TurnOffRed;
+            cableWhite1.GetComponent<Renderer>().material = Off;
+            cableWhite2.GetComponent<Renderer>().material = Off;
+            cableGreen1.GetComponent<Renderer>().material = Off;
+            cableGreen2.GetComponent<Renderer>().material = Off;
         }
 
         

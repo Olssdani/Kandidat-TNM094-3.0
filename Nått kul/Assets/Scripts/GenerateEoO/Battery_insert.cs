@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Battery_insert : MonoBehaviour {
     public bool insert;
+    private ControllerInput controller = new ControllerInput();
     GameObject other;
-    public GameObject White;
-    public GameObject Green;
-    public GameObject Yellow;
-
+    private Animator anim;
 
     public Light insertedLight;
     public Light GeneratorLightWhite;
     public Light GeneratorLightGreen;
     public Light GeneratorLightYellow;
 
-    private ControllerInput controller = new ControllerInput();
-	private Animator anim;
 	public ParticleSystem sprakWhite;
 	public ParticleSystem sprakGreen;
 	public ParticleSystem sprakYellow;
 
+    public GameObject White;
+    public GameObject Green;
+    public GameObject Yellow;
     public GameObject cableWhite1;
     public GameObject cableWhite2;
     public GameObject cableWhite3;
@@ -44,7 +43,6 @@ public class Battery_insert : MonoBehaviour {
     public GameObject MotorWhite;
     public GameObject MotorGreen;
     public GameObject MotorYellow;
-
 
     public Material GlowWhite;
     public Material GlowGreen;
@@ -133,8 +131,34 @@ public class Battery_insert : MonoBehaviour {
         }
 
         if (!(insert) && controller.ButtonPressed ("Button3")) {
-			//anim.Play ("Particle-System-Thobias");
-			sprakYellow.Emit(10);
-		}
-	}
+
+            if (!Yellow.GetComponent<MeshRenderer>().enabled)
+            {
+                sprakYellow.Emit(10);
+                cableYellow1.GetComponent<Renderer>().material = GlowYellow;
+                cableYellow2.GetComponent<Renderer>().material = GlowYellow;
+            }
+            else
+            {
+                cableYellow1.GetComponent<Renderer>().material = GlowYellow;
+                cableYellow2.GetComponent<Renderer>().material = GlowYellow;
+                cableYellow3.GetComponent<Renderer>().material = GlowYellow;
+                cableYellow4.GetComponent<Renderer>().material = GlowYellow;
+                GenYellow1.GetComponent<Renderer>().material = GlowYellow;
+                GenYellow2.GetComponent<Renderer>().material = GlowYellow;
+                MotorYellow.transform.Rotate(new Vector3(0, 0, 2) * 70 * Time.deltaTime);
+                GeneratorLightYellow.enabled = true;
+            }
+        }
+        else
+        {
+            cableYellow1.GetComponent<Renderer>().material = Off;
+            cableYellow2.GetComponent<Renderer>().material = Off;
+            cableYellow3.GetComponent<Renderer>().material = Off;
+            cableYellow4.GetComponent<Renderer>().material = Off;
+            GenYellow1.GetComponent<Renderer>().material = Off;
+            GenYellow2.GetComponent<Renderer>().material = Off;
+            GeneratorLightYellow.enabled = false;
+        }
+    }
 }
