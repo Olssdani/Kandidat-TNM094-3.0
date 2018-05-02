@@ -36,6 +36,7 @@ public class Arm_generator : MonoBehaviour {
 
 		if (controller.GetAxis("Right", "Vertical") > 0)
 		{
+            Debug.Log("HEJ");
 			anim.Play("Grab");
 			if (counter < 65)
 			{
