@@ -11,6 +11,9 @@ TagManager:
   - Cable Green
   - Battery
   - Arm
+  - BatteryYellow
+  - BatteryWhite
+  - BatteryGreen
   layers:
   - Default
   - TransparentFX

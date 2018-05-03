@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Battery_insert : MonoBehaviour {
-    public bool insert;
+    public bool insertYellow;
+	public bool insertWhite;
+	public bool insertGreen;
     private ControllerInput controller = new ControllerInput();
     GameObject other;
     private Animator anim;
@@ -51,8 +53,12 @@ public class Battery_insert : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Battery")) 
-            insert = true;  
+        if (col.gameObject.CompareTag("BatteryYellow")) 
+            insertYellow = true;
+		if (col.gameObject.CompareTag("BatteryWhite")) 
+			insertWhite = true;
+		if (col.gameObject.CompareTag("BatteryGreen")) 
+			insertGreen = true;
     }
 
     void Start () {
@@ -61,11 +67,23 @@ public class Battery_insert : MonoBehaviour {
 	
 	void Update () {
     
-        if (insert)
+        if (insertYellow)
         {
             GetComponent<MeshRenderer>().enabled = true;
 			insertedLight.enabled = true;
         }
+
+		if (insertWhite)
+		{
+			GetComponent<MeshRenderer>().enabled = true;
+			insertedLight.enabled = true;
+		}
+
+		if (insertGreen)
+		{
+			GetComponent<MeshRenderer>().enabled = true;
+			insertedLight.enabled = true;
+		}
 
         if (controller.ButtonPressed("Button2"))
         {
@@ -130,7 +148,7 @@ public class Battery_insert : MonoBehaviour {
             GeneratorLightGreen.enabled = false;
         }
 
-        if (!(insert) && controller.ButtonPressed ("Button3")) {
+        if (!(insertYellow) && controller.ButtonPressed ("Button3")) {
 
             if (!Yellow.GetComponent<MeshRenderer>().enabled)
             {
