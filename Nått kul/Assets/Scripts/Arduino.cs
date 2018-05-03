@@ -22,7 +22,7 @@ public class Arduino : MonoBehaviour {
     public static Arduino instance = null;
     //A serialport to the ardunio
     private SerialPort SerialPort_Nano = new SerialPort("COM3", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
-    private SerialPort SerialPort_Duo = new SerialPort("COM6", 115200); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Duo = new SerialPort("COM4", 115200); //(9600)  Opens a connection between Unity and a Serialport. 
     //Buttons and joysticks
     bool [] buttons = new bool[5] { false, false, false, false, false };
     bool [] buttons_light = new bool[5] { false, false, false, false, false };
