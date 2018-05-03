@@ -15,6 +15,7 @@ public class AFK : MonoBehaviour {
 	
 	void Update () {
         time = Time.realtimeSinceStartup - stopTime;
+        print(time);
 
         if(controller.GetAxis("Left", "Horizontal") != 0.0f || controller.GetAxis("Left","Vertical") != 0.0f)
         {
@@ -23,7 +24,6 @@ public class AFK : MonoBehaviour {
 
         if(time >= 60.0f)
         {
-            stopTime = 0.0f;
             Initiate.Fade("start_scene", Color.black, 2.0f);
         }
 	}

@@ -45,7 +45,7 @@ public class StartMainGenerator : MonoBehaviour {
 
     void Update()
     {
-        if (controller.ButtonPressed("Button4") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insert)
+        if (controller.ButtonPressed("Button3") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insert)
         {
 			if (!input1) {
 				light_red.GetComponent<Renderer>().material = GlowRed;
@@ -76,21 +76,30 @@ public class StartMainGenerator : MonoBehaviour {
 				yellowSecondLight.enabled = true;
                 light_green.GetComponent<Renderer>().material = GlowYellow;
             }
-            else if ((controller.ButtonPressed("Button3")) && input1 && !input2)
+            /*else if ((controller.ButtonPressed("Button1")) && input1 && !input2)
             {
 				yellowFirstLight.enabled = false;
 				redLight.enabled = true;
                 input1 = false;
-            } 
+            } */
 
-            if (controller.ButtonPressed("Button3") && input1)
+            if (controller.ButtonPressed("Button1") && input2)
             {
                 input3 = true;
 				started = true;
 				blueLight.enabled = false;
 				yellowThirdLight.enabled = true;
                 light_blue.GetComponent<Renderer>().material = GlowYellow;
-            }   
+            }
+
+            if (started)
+            {
+                coreLight1.GetComponent<Renderer>().material = GlowYellow;
+                coreLight2.GetComponent<Renderer>().material = GlowYellow;
+                generatorLight.enabled = true;
+                coreMotor1.transform.Rotate(new Vector3(0, 0, 2) * speed * Time.deltaTime);
+                coreMotor2.transform.Rotate(new Vector3(0, 0, -2) * speed * Time.deltaTime);
+            }
         }
 		else if(!started)
         {
