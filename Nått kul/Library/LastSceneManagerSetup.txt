@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Fueling_real.unity
-  isLoaded: 1
-  isActive: 1
