@@ -71,7 +71,7 @@ public class Arm_generator : MonoBehaviour {
 	{
 		Debug.Log("Hellooo");
 		//Check if the collid is with the tube
-		if (other.gameObject.CompareTag("Battery"))
+		if (other.gameObject.CompareTag("BatteryYellow"))
 		{
 			//Makes the animation stop 
 

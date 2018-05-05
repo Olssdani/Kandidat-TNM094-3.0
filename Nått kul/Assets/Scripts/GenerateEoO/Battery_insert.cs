@@ -53,12 +53,19 @@ public class Battery_insert : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("BatteryYellow")) 
-            insertYellow = true;
-		if (col.gameObject.CompareTag("BatteryWhite")) 
+		if (col.gameObject.CompareTag ("BatteryYellow") && this.gameObject.CompareTag("ZoneYellow")) {
+			
+			insertYellow = true;
+			Debug.Log ("gul");
+		}
+		if (col.gameObject.CompareTag ("BatteryWhite") && this.gameObject.CompareTag("ZoneWhite")) {
 			insertWhite = true;
-		if (col.gameObject.CompareTag("BatteryGreen")) 
+			Debug.Log ("white");
+		}
+		if (col.gameObject.CompareTag ("BatteryGreen") && this.gameObject.CompareTag("ZoneGreen")) {
 			insertGreen = true;
+			Debug.Log ("green");
+		}
     }
 
     void Start () {
@@ -67,21 +74,21 @@ public class Battery_insert : MonoBehaviour {
 	
 	void Update () {
     
-        if (insertYellow)
+		if (insertYellow && this.gameObject.CompareTag("ZoneYellow"))
         {
-            GetComponent<MeshRenderer>().enabled = true;
+            Yellow.GetComponent<MeshRenderer>().enabled = true;
 			insertedLight.enabled = true;
         }
 
-		if (insertWhite)
+		if (insertWhite && this.gameObject.CompareTag("ZoneWhite"))
 		{
-			GetComponent<MeshRenderer>().enabled = true;
+			White.GetComponent<MeshRenderer>().enabled = true;
 			insertedLight.enabled = true;
 		}
 
-		if (insertGreen)
+		if (insertGreen && this.gameObject.CompareTag("ZoneGreen"))
 		{
-			GetComponent<MeshRenderer>().enabled = true;
+			Green.GetComponent<MeshRenderer>().enabled = true;
 			insertedLight.enabled = true;
 		}
 
