@@ -32,12 +32,13 @@ public class Arm_generator : MonoBehaviour {
 
 	// Update is called once per frame. Checks for inputs.
 	void FixedUpdate () {
-		//Rotate and extend arm
-
+        //Rotate and extend arm
+        //Debug.Log(controller.GetAxis("Right", "Vertical"));
 		if (controller.GetAxis("Right", "Vertical") > 0)
 		{
-            Debug.Log("HEJ");
-			anim.Play("Grab");
+            //Debug.Log("Arm");
+            //Debug.Log("HEJ");
+            anim.Play("Grab");
 			if (counter < 65)
 			{
 				anim.SetFloat("Direction", 1.0f);
@@ -69,7 +70,7 @@ public class Arm_generator : MonoBehaviour {
 	//Looks for colissions
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Hellooo");
+		//Debug.Log("Hellooo");
 		//Check if the collid is with the tube
 		if (other.gameObject.CompareTag("BatteryYellow"))
 		{

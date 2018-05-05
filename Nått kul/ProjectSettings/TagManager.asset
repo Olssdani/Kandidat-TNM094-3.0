@@ -17,6 +17,9 @@ TagManager:
   - ZoneWhite
   - ZoneGreen
   - ZoneYellow
+  - YellowDoor
+  - GreenDoor
+  - WhiteDoor
   layers:
   - Default
   - TransparentFX
