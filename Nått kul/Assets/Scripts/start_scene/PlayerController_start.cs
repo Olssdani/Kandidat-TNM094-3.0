@@ -16,10 +16,21 @@ public class PlayerController_start : MonoBehaviour {
     // Gets the speed of which the player moves and rotates
     public float speed;
     public float rotateSpeed;
+
+    //for the animation
+    private Animator anim;
+    public GameObject player;
+
     // Character controller needed for function SimpleMove
     private CharacterController cc;
     ControllerInput controller = new ControllerInput();
-	void Update () {
+
+    void Start()
+    {
+        anim = player.GetComponent<Animator>();
+    }
+
+    void Update () {
         // Gets the component from Unity
         cc = GetComponent<CharacterController>();
         // Gets the input from the keyboard/joystick and uses it to rotate around the y-axis
@@ -30,6 +41,13 @@ public class PlayerController_start : MonoBehaviour {
         float curSpeed = speed * controller.GetAxis("Left","Vertical");
         // Uses the function SimpleMove to move the player using the direction times the float
         cc.SimpleMove(forward * curSpeed);
+
+        if (controller.ButtonPressed("Button4"))
+        {
+            //Animation
+            Debug.Log("Animation");
+            anim.SetTrigger("ButtonPress");
+        }
 
     }
 }

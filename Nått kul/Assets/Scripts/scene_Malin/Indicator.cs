@@ -18,10 +18,13 @@ public class Indicator : MonoBehaviour {
     public int nr;
     //Script that controll all the pick ups and leaks
     public Mission_Controller mission_controller;
+
+
 	// Use this for initialization
 	void Start () {
         //Make the object don't render
         this.GetComponent<Renderer>().enabled = false;
+
     }
 	
 	// Update is called once per frame
@@ -33,19 +36,25 @@ public class Indicator : MonoBehaviour {
             //hide oject
             //this.GetComponent<Renderer>().enabled = true;
         }
+        else
+        {
+            leak.Stop();
+        }
 	}
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Pick-up"))
         {
+
+            Debug.Log(mission_controller.show(nr));
             //If the leak has collid with the pick up and the pick isn't carried we disable the rendering
             //if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
-            if (mission_controller.show(nr) && other.gameObject.GetComponent<Pick_up>().Carried() && controller.ButtonPressed("Button3"))
+            if (mission_controller.show(nr) && controller.ButtonPressed("Button4"))
             {
-                Debug.Log("Cleared " + nr);
+                other.gameObject.transform.position = other.gameObject.GetComponent<Pick_up>().origin;
                 mission_controller.cleared(nr);
-                leak.Stop();
+                //leak.Stop();
                 //this.GetComponent<Renderer>().enabled = false;
             }
         }

@@ -11,6 +11,9 @@ TagManager:
   - Cable Green
   - Battery
   - Arm
+  - YellowDoor
+  - GreenDoor
+  - WhiteDoor
   layers:
   - Default
   - TransparentFX

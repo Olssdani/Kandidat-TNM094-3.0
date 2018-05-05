@@ -67,10 +67,11 @@ public class Arduino : MonoBehaviour {
             try
             {
                 ArduinoDecrypter();
+                //Debug.Log(Joystick[0] +" "+ Joystick[1] +" " + Joystick[2] +" "+ Joystick[3]);
             }
             catch (System.TimeoutException)
             {
-                Debug.Log("TimeoutNano");
+                //Debug.Log("TimeoutNano");
             }
             try
             {
@@ -78,7 +79,7 @@ public class Arduino : MonoBehaviour {
             }
                 catch (System.TimeoutException)
             {
-                Debug.Log("TimeoutDuo");
+               // Debug.Log("TimeoutDuo");
             }
 
             }
@@ -130,6 +131,7 @@ public class Arduino : MonoBehaviour {
     {
         int[] controllers = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         string Duo_read = SerialPort_Duo.ReadLine();
+        Debug.Log(Duo_read);
         // Only reads the string if it is 11 characters long. It is because of the information lost in transmission (vad för info förloras?)
         if (Duo_read.Length == 3)
         {
@@ -138,7 +140,7 @@ public class Arduino : MonoBehaviour {
                 //Makes chars into ints.
                 controllers[i] = (int)(Duo_read[i] - '0');
             }
-
+            Debug.Log(controllers[0] + " " + controllers[1] + " " + controllers[2] + " " + controllers[3]);
             //Adds the joystick state into the joystick variable
             //lägg till horisontal och vertikal
             for (int i = 0; i < Duo_read.Length; i++)
