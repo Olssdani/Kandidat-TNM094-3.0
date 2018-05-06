@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/scene_leak.unity
+=======
+- path: Assets/Scenes/generateEoOVer2.unity
+>>>>>>> 691b12506b723b4da277e6644609f1faa2be744d
   isLoaded: 1
   isActive: 1

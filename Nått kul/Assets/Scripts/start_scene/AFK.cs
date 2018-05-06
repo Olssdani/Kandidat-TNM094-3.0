@@ -15,7 +15,6 @@ public class AFK : MonoBehaviour {
 	
 	void Update () {
         time = Time.realtimeSinceStartup - stopTime;
-        print(time);
 
         if(controller.GetAxis("Left", "Horizontal") != 0.0f || controller.GetAxis("Left","Vertical") != 0.0f)
         {
