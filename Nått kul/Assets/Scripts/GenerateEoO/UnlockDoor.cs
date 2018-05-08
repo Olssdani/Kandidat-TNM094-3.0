@@ -89,7 +89,7 @@ public class UnlockDoor : MonoBehaviour {
     }
 	
 	void Update () {
-		if (controller.ButtonPressed("Button2") && GameObject.Find("Inserted_Battery_Red").GetComponent<Battery_insert>().insert)
+		if (controller.ButtonPressed("Button2") && GameObject.Find("Inserted_Battery_Red").GetComponent<Battery_insert>().insertWhite)
         {
             cableWhite1.GetComponent<Renderer>().material = GlowRed;
             cableWhite2.GetComponent<Renderer>().material = GlowRed;
@@ -136,7 +136,7 @@ public class UnlockDoor : MonoBehaviour {
             }
 
         }
-		else if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insert)
+		else if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insertGreen)
         {
             cableGreen1.GetComponent<Renderer>().material = GlowGreen;
             cableGreen2.GetComponent<Renderer>().material = GlowGreen;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074, b: 0.35872698, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 181847446}
   m_Layer: 0
   m_Name: Inserted_Battery_Green
-  m_TagString: Zone
+  m_TagString: ZoneGreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,7 +909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c33c6960e57af54896f7a0417588d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insert: 0
+  insertYellow: 0
+  insertWhite: 0
+  insertGreen: 0
   insertedLight: {fileID: 1249516243}
   GeneratorLightWhite: {fileID: 1092219965}
   GeneratorLightGreen: {fileID: 1157287281}
@@ -941,7 +943,7 @@ MonoBehaviour:
   MotorWhite: {fileID: 1641910445}
   MotorGreen: {fileID: 1743374089}
   MotorYellow: {fileID: 537534687}
-  GlowWhite: {fileID: 2100000, guid: e7a46a021560b42489097e3f8e992a5d, type: 2}
+  GlowWhite: {fileID: 2100000, guid: 4bff36068b15949a488fab0e1faff801, type: 2}
   GlowGreen: {fileID: 2100000, guid: 361bfe7bd64e540999951d875c953eb3, type: 2}
   GlowYellow: {fileID: 2100000, guid: f7e98050a585843828c068135cc13e4f, type: 2}
   Off: {fileID: 2100000, guid: 7caf9be6a5c31bd48b2515203ebf8209, type: 2}
@@ -1351,7 +1353,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_TagString
-      value: Battery
+      value: BatteryYellow
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4039,7 +4041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_TagString
-      value: Battery
+      value: BatteryWhite
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5717,7 +5719,7 @@ Light:
   m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8666667, g: 0.8666667, b: 0.93333334, a: 1}
   m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
@@ -5909,7 +5911,7 @@ GameObject:
   - component: {fileID: 1274585564}
   m_Layer: 0
   m_Name: Inserted_Battery_Blue
-  m_TagString: Zone
+  m_TagString: ZoneYellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5939,7 +5941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c33c6960e57af54896f7a0417588d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insert: 0
+  insertYellow: 0
+  insertWhite: 0
+  insertGreen: 0
   insertedLight: {fileID: 1050649157}
   GeneratorLightWhite: {fileID: 1092219965}
   GeneratorLightGreen: {fileID: 1157287281}
@@ -5971,7 +5975,7 @@ MonoBehaviour:
   MotorWhite: {fileID: 1641910445}
   MotorGreen: {fileID: 1743374089}
   MotorYellow: {fileID: 537534687}
-  GlowWhite: {fileID: 2100000, guid: e7a46a021560b42489097e3f8e992a5d, type: 2}
+  GlowWhite: {fileID: 2100000, guid: 4bff36068b15949a488fab0e1faff801, type: 2}
   GlowGreen: {fileID: 2100000, guid: 361bfe7bd64e540999951d875c953eb3, type: 2}
   GlowYellow: {fileID: 2100000, guid: f7e98050a585843828c068135cc13e4f, type: 2}
   Off: {fileID: 2100000, guid: 7caf9be6a5c31bd48b2515203ebf8209, type: 2}
@@ -6174,7 +6178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_TagString
-      value: Battery
+      value: BatteryGreen
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 26289f25f58226042bedc5755404a8c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6512,7 +6516,7 @@ MonoBehaviour:
   speed: 1
   UnlockWhite: 0
   UnlockGreen: 0
-  GlowRed: {fileID: 2100000, guid: e7a46a021560b42489097e3f8e992a5d, type: 2}
+  GlowRed: {fileID: 2100000, guid: 4bff36068b15949a488fab0e1faff801, type: 2}
   GlowGreen: {fileID: 2100000, guid: 361bfe7bd64e540999951d875c953eb3, type: 2}
   Off: {fileID: 2100000, guid: 7caf9be6a5c31bd48b2515203ebf8209, type: 2}
   firstLightRed: {fileID: 942711277}
@@ -7439,7 +7443,7 @@ GameObject:
   - component: {fileID: 1889526321}
   m_Layer: 0
   m_Name: Inserted_Battery_Red
-  m_TagString: Zone
+  m_TagString: ZoneWhite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7469,7 +7473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c33c6960e57af54896f7a0417588d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insert: 0
+  insertYellow: 0
+  insertWhite: 0
+  insertGreen: 0
   insertedLight: {fileID: 1226717674}
   GeneratorLightWhite: {fileID: 1092219965}
   GeneratorLightGreen: {fileID: 1157287281}
@@ -7501,7 +7507,7 @@ MonoBehaviour:
   MotorWhite: {fileID: 1641910445}
   MotorGreen: {fileID: 1743374089}
   MotorYellow: {fileID: 537534687}
-  GlowWhite: {fileID: 2100000, guid: e7a46a021560b42489097e3f8e992a5d, type: 2}
+  GlowWhite: {fileID: 2100000, guid: 4bff36068b15949a488fab0e1faff801, type: 2}
   GlowGreen: {fileID: 2100000, guid: 361bfe7bd64e540999951d875c953eb3, type: 2}
   GlowYellow: {fileID: 2100000, guid: f7e98050a585843828c068135cc13e4f, type: 2}
   Off: {fileID: 2100000, guid: 7caf9be6a5c31bd48b2515203ebf8209, type: 2}
@@ -7520,7 +7526,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7caf9be6a5c31bd48b2515203ebf8209, type: 2}
+  - {fileID: 2100000, guid: 4bff36068b15949a488fab0e1faff801, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7557,7 +7563,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.05
+  m_Radius: 0.07
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: -2.131628e-16, y: 0.015000002, z: 0}

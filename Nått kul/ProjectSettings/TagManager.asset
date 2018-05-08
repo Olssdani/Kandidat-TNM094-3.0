@@ -11,6 +11,12 @@ TagManager:
   - Cable Green
   - Battery
   - Arm
+  - BatteryYellow
+  - BatteryWhite
+  - BatteryGreen
+  - ZoneWhite
+  - ZoneGreen
+  - ZoneYellow
   - YellowDoor
   - GreenDoor
   - WhiteDoor

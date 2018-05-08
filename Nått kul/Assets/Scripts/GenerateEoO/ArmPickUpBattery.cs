@@ -42,7 +42,7 @@ public class ArmPickUpBattery : MonoBehaviour {
 		if (beingCarried)
 		{
 			//Press Z to release object
-			if (controller.ButtonPressed("Button5") && hasArm)
+			if (controller.ButtonPressed("Button4") && hasArm)
 			{
 				rb.isKinematic = false;
 				transform.parent = null;
@@ -52,7 +52,7 @@ public class ArmPickUpBattery : MonoBehaviour {
 		else
 		{
 			//Picks up the object
-			if (controller.ButtonPressed("Button5") && hasArm)
+			if (controller.ButtonPressed("Button4") && hasArm)
 			{
                 Debug.Log("Hararm");
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
