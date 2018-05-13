@@ -38,11 +38,11 @@ public class Mission_Controller : MonoBehaviour {
         //Set mission as completed
         mission_completed[nr] = true;
         objectiv[nr] = false;
-        objectiv[nr + 1] = true;
-        //if (nr+1 < objectiv.Length)
-        //{
 
-        //}
+        if (nr+1 < objectiv.Length)
+        {
+            objectiv[nr + 1] = true;
+        }
     }
 
     public void print()

@@ -69,7 +69,6 @@ public class Pick_up : MonoBehaviour {
                 // Pick up object
                 else if (controller.ButtonPressed("Button4") && !IsCarried && able_for_pickup && delta > 1.0f)
                 {
-
                     start = Time.time;
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                     IsCarried = true;
@@ -120,12 +119,9 @@ public class Pick_up : MonoBehaviour {
    
         if (mission_controller.show(nr))
         {
-           
             // Make object able for pickup
             if (other.gameObject.CompareTag("player"))
             {
-                Debug.Log(nr);
-
                 player = other.gameObject;
                 able_for_pickup = true;
             }

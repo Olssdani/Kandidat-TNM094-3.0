@@ -18,6 +18,7 @@ public class player2_controller_leak : MonoBehaviour
 	public float Verticalspeed;
 	public float Horizontalspeed;
 	public float MaxSpeed;
+    public int PlayerNr;
 
 	private Rigidbody rb;
 	private float g;
