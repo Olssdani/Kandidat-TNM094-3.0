@@ -89,14 +89,14 @@ public class Pick_up : MonoBehaviour {
                 delta = Time.time - start;
 
                 //Drop object
-                if (Input.GetKey(KeyCode.Keypad5) && IsCarried && delta > 1.0f)
+                if (controller.ButtonPressed("Button5") && IsCarried && delta > 1.0f)
                 {
                     start = Time.time;
                     IsCarried = false;
                     //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
                 }
                 // Pick up object
-                else if (Input.GetKey(KeyCode.Keypad5) && !IsCarried && able_for_pickup && delta > 1.0f)
+                else if (controller.ButtonPressed("Button5") && !IsCarried && able_for_pickup && delta > 1.0f)
                 {
 
                     start = Time.time;

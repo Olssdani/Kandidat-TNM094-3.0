@@ -62,7 +62,7 @@ public class Indicator : MonoBehaviour {
         {
             //If the leak has collid with the pick up and the pick isn't carried we disable the rendering
             //if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
-            if (mission_controller.show(nr) && Input.GetKey(KeyCode.Keypad5))
+            if (mission_controller.show(nr) && controller.ButtonPressed("Button5"))
             {
                 leak.Stop();
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
