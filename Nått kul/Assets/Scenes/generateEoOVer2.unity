@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964127, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1790,6 +1790,10 @@ Prefab:
       propertyPath: m_TagString
       value: Arm
       objectReference: {fileID: 0}
+    - target: {fileID: 13700008, guid: 29d778abfacd98743ad46ef93d0715d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a73a0d768855d457988731b048d68b31, type: 2}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 29d778abfacd98743ad46ef93d0715d0, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 29d778abfacd98743ad46ef93d0715d0, type: 3}
@@ -2227,15 +2231,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
       propertyPath: m_TagString
@@ -2581,6 +2585,14 @@ Prefab:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300008, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a73a0d768855d457988731b048d68b31, type: 2}
+    - target: {fileID: 2300012, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a73a0d768855d457988731b048d68b31, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1884db6107a1bea4ea33a5c5cbbf81db, type: 3}
   m_IsPrefabParent: 0
@@ -8140,7 +8152,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2070618141}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
