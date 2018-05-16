@@ -46,7 +46,7 @@ public class StartMainGenerator : MonoBehaviour {
     void Update()
     {
 
-        if (controller.ButtonPressed("Button4") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insertYellow)
+        if (controller.ButtonPressed("Button3") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insertYellow)
 
         {
 			if (!input1) {
@@ -78,12 +78,6 @@ public class StartMainGenerator : MonoBehaviour {
 				yellowSecondLight.enabled = true;
                 light_green.GetComponent<Renderer>().material = GlowYellow;
             }
-            /*else if ((controller.ButtonPressed("Button1")) && input1 && !input2)
-            {
-				yellowFirstLight.enabled = false;
-				redLight.enabled = true;
-                input1 = false;
-            } */
 
             if (controller.ButtonPressed("Button1") && input2)
             {
