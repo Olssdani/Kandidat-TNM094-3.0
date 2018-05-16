@@ -30,6 +30,17 @@ public class Pick_up : MonoBehaviour {
     //Orgin position
     public Vector3 origin;
 
+
+	private Animator ani1;
+	private Animator ani2;
+
+	private Animator animator;
+
+	public GameObject char1;
+	public GameObject char2;
+
+	private bool play_ani;
+
     // Use this for initialization
     void Start () {
         //Set rendering to false
@@ -37,6 +48,10 @@ public class Pick_up : MonoBehaviour {
         GetComponent<Rigidbody>().isKinematic = true;
         IsCarried = false;
         first_time = true;
+
+		// set the animation for not picking up the object tp false
+		ani1 = char1.GetComponent<Animator> ();
+		ani2 = char2.GetComponent<Animator> ();
     }
 	
 	// Update is called once per frame
@@ -79,6 +94,15 @@ public class Pick_up : MonoBehaviour {
 
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                 }
+
+
+				// if there is nothing to pick up. play animation
+				if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
+				{
+					ani1.SetBool ("play_ani", true);
+				}
+
+
             }
         }else if(gameObject.tag == "Pick-up2")
         {
@@ -109,6 +133,14 @@ public class Pick_up : MonoBehaviour {
 
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                 }
+
+				// if there is nothing to pick up. play animation
+				if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
+				{
+					ani2.SetBool ("play_ani", true);
+				}
+
+
             }
         }
         

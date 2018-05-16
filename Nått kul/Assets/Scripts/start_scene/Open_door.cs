@@ -35,32 +35,54 @@ public class Open_door : MonoBehaviour {
 
         con = new ControllerInput();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         // Calculates the distance between the player and the door
         reachDistance = Vector3.Distance(Player.transform.position, Target.transform.position);
 
         bool btn = con.ButtonPressed(button);
 
+        //StartCoroutine(Open1());
+
+
         // Activates if the player is close enough
-        if(open == false && btn)
+        if (open == false && btn)
         {
             // Plays the animations to open the door
-            anim.Play("Open");
+            StartCoroutine(Open1());
+            /*anim.Play("Open");
             anim2.Play("Open_right");
-            open = true;
+            open = true;*/
         }
 
         // Activates if the door is open and the player moves away from the door
-        else if(open && btn == false)
+        else if(open && btn)
         {
             // Plays the animations to close the door
-            anim.Play("Close");
+            StartCoroutine(Close1());
+            /*anim.Play("Close");
             anim2.Play("Close_right");
-            open = false;
+            open = false;*/
         }
-        
-		
-	}
+    }
+
+    IEnumerator Open1()
+    {
+    anim.Play("Open");
+    anim2.Play("Open_right");
+    yield return new WaitForSeconds(1.5f);
+    open = true;
+    }
+
+    IEnumerator Close1()
+    {
+        anim.Play("Close");
+        anim2.Play("Close_right");
+        yield return new WaitForSeconds(1.5f);
+        open = false;
+    }
+
+
 }
