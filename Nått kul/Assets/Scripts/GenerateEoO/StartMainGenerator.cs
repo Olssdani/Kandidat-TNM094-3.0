@@ -45,7 +45,9 @@ public class StartMainGenerator : MonoBehaviour {
 
     void Update()
     {
-        if (controller.ButtonPressed("Button3") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insert)
+
+        if (controller.ButtonPressed("Button4") && GameObject.Find("Inserted_Battery_Blue").GetComponent<Battery_insert>().insertYellow)
+
         {
 			if (!input1) {
 				light_red.GetComponent<Renderer>().material = GlowRed;

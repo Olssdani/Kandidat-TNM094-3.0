@@ -25,6 +25,7 @@ public class PickUpObject : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+
 		// If the player is at the object it can pick it up
         if(other.gameObject.CompareTag("Player")) //will only work if the Player has it's tag set to Player in Unity!!!!!!
         {
@@ -32,13 +33,23 @@ public class PickUpObject : MonoBehaviour {
             hasPlayer = true;
         }
 
-        if (other.gameObject.CompareTag("Zone"))// Not mine
+		if (other.gameObject.CompareTag("ZoneYellow") && this.gameObject.CompareTag("BatteryYellow"))// Not mine
         {
             inserted = true;
             Destroy(gameObject);
-            //Debug.Log("Batteri");
         }
 
+		if (other.gameObject.CompareTag("ZoneWhite") && this.gameObject.CompareTag("BatteryWhite"))// Not mine
+		{
+			inserted = true;
+			Destroy(gameObject);
+		}
+
+		if (other.gameObject.CompareTag("ZoneGreen") && this.gameObject.CompareTag("BatteryGreen"))// Not mine
+		{
+			inserted = true;
+			Destroy(gameObject);
+		}
 
     }
 
@@ -73,7 +84,6 @@ public class PickUpObject : MonoBehaviour {
             //Picks up the object
 			if (controller.ButtonPressed("Button4") && hasPlayer)
             {
-				Debug.Log ("4a tryckt");
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
                 rb.isKinematic = true;
 

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Battery_insert : MonoBehaviour {
-    public bool insert;
+    public bool insertYellow;
+	public bool insertWhite;
+	public bool insertGreen;
     private ControllerInput controller = new ControllerInput();
     GameObject other;
     private Animator anim;
@@ -51,8 +53,19 @@ public class Battery_insert : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Battery")) 
-            insert = true;  
+		if (col.gameObject.CompareTag ("BatteryYellow") && this.gameObject.CompareTag("ZoneYellow")) {
+			
+			insertYellow = true;
+			Debug.Log ("gul");
+		}
+		if (col.gameObject.CompareTag ("BatteryWhite") && this.gameObject.CompareTag("ZoneWhite")) {
+			insertWhite = true;
+			Debug.Log ("white");
+		}
+		if (col.gameObject.CompareTag ("BatteryGreen") && this.gameObject.CompareTag("ZoneGreen")) {
+			insertGreen = true;
+			Debug.Log ("green");
+		}
     }
 
     void Start () {
@@ -61,11 +74,23 @@ public class Battery_insert : MonoBehaviour {
 	
 	void Update () {
     
-        if (insert)
+		if (insertYellow && this.gameObject.CompareTag("ZoneYellow"))
         {
-            GetComponent<MeshRenderer>().enabled = true;
+            Yellow.GetComponent<MeshRenderer>().enabled = true;
 			insertedLight.enabled = true;
         }
+
+		if (insertWhite && this.gameObject.CompareTag("ZoneWhite"))
+		{
+			White.GetComponent<MeshRenderer>().enabled = true;
+			insertedLight.enabled = true;
+		}
+
+		if (insertGreen && this.gameObject.CompareTag("ZoneGreen"))
+		{
+			Green.GetComponent<MeshRenderer>().enabled = true;
+			insertedLight.enabled = true;
+		}
 
         if (controller.ButtonPressed("Button2"))
         {
@@ -130,7 +155,7 @@ public class Battery_insert : MonoBehaviour {
             GeneratorLightGreen.enabled = false;
         }
 
-        if (!(insert) && controller.ButtonPressed ("Button3")) {
+        if (!(insertYellow) && controller.ButtonPressed ("Button3")) {
 
             if (!Yellow.GetComponent<MeshRenderer>().enabled)
             {

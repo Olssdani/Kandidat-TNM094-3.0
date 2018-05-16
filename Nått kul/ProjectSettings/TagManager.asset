@@ -11,9 +11,21 @@ TagManager:
   - Cable Green
   - Battery
   - Arm
+  - BatteryYellow
+  - BatteryWhite
+  - BatteryGreen
+  - ZoneWhite
+  - ZoneGreen
+  - ZoneYellow
   - YellowDoor
   - GreenDoor
   - WhiteDoor
+  - Fueling_Cell
+  - player
+  - Tube
+  - Pick_up1
+  - Pick-up2
+  - Pick-up1
   layers:
   - Default
   - TransparentFX

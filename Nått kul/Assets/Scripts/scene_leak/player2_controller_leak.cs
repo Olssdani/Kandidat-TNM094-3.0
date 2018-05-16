@@ -15,11 +15,10 @@ public class player2_controller_leak : MonoBehaviour
 {
 	ControllerInput controller = new ControllerInput();
 
-	public float testar;
-	public float speed;
 	public float Verticalspeed;
 	public float Horizontalspeed;
 	public float MaxSpeed;
+    public int PlayerNr;
 
 	private Rigidbody rb;
 	private float g;
@@ -32,8 +31,6 @@ public class player2_controller_leak : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-
-		speed = 10;
 		Verticalspeed = 10;
 		Horizontalspeed = 10;
 		MaxSpeed = 10;
