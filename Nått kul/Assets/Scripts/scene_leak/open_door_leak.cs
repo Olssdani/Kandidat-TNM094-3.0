@@ -19,9 +19,9 @@ public class open_door_leak : MonoBehaviour
 	public GameObject Target2; // Right side of the door
 
 	// Togglers for the different doors
-	private bool openWhite = false;
-	private bool openGreen = false;
-	private bool openYellow = false;
+	private bool openWhite;
+	private bool openGreen;
+	private bool openYellow;
 
 	// Animators for the left and right side of the door respectively
 	private Animator anim;
@@ -45,6 +45,10 @@ public class open_door_leak : MonoBehaviour
 
 		delta = 0;
 		start = Time.time;
+
+		openWhite = false;
+		openGreen = false;
+		openYellow = false;
 	}
 
 
@@ -70,6 +74,16 @@ public class open_door_leak : MonoBehaviour
 				close ();
 			}
 
+			// closing green when opening white
+			if (con.ButtonPressed ("Button1") && openGreen && gameObject.CompareTag("GreenDoor")) 
+			{
+				openGreen = false;
+				close ();
+			}
+
+
+
+
 			// Toggel Yellow button
 			if (con.ButtonPressed ("Button2") && !openYellow && gameObject.CompareTag("YellowDoor")) 
 			{
@@ -84,12 +98,21 @@ public class open_door_leak : MonoBehaviour
 				openYellow = false;
 				close ();
 			}
+				
+			// close the white door when opening the yellow door
+			if (con.ButtonPressed ("Button2") && openWhite && gameObject.CompareTag ("WhiteDoor")) 
+			{
+				openWhite = false;
+				close ();
+			}
+
+
+
 
 
 			// Toggel Green button
 			if (con.ButtonPressed ("Button3") && !openGreen && gameObject.CompareTag("GreenDoor")) 
 			{
-
 				// Plays the animations to open the door
 				openGreen = true;
 				open ();
@@ -98,6 +121,13 @@ public class open_door_leak : MonoBehaviour
 			{
 				// Plays the animations to close the door
 				openGreen = false;
+				close ();
+			}
+
+			// closing yellow when opening green
+			if (con.ButtonPressed ("Button3") && openYellow && gameObject.CompareTag("YellowDoor")) 
+			{
+				openYellow = false;
 				close ();
 			}
 		}

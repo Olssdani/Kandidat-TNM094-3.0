@@ -26,6 +26,8 @@ TagManager:
   - Pick_up1
   - Pick-up2
   - Pick-up1
+  - buttonWhite
+  - buttonGreen
   layers:
   - Default
   - TransparentFX
