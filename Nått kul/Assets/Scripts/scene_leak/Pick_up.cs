@@ -55,13 +55,13 @@ public class Pick_up : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate () 
+	{
         if (mission_controller.show(nr)&& first_time)
         {
             first_time = false;
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddForce(-15.0f, 0, 0, ForceMode.Impulse);
-
         }
 
         if(gameObject.tag == "Pick-up1")
@@ -96,14 +96,12 @@ public class Pick_up : MonoBehaviour {
                 }
 
 
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
-				{
-					ani1.SetBool ("play_ani", true);
-				}
+
+
 
 
             }
+
         }else if(gameObject.tag == "Pick-up2")
         {
             //Only check against object that is shown
@@ -134,17 +132,35 @@ public class Pick_up : MonoBehaviour {
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                 }
 
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
-				{
-					ani2.SetBool ("play_ani", true);
-				}
+
 
 
             }
         }
-        
+
+		// if there is nothing to pick up. play animation
+		if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
+		{
+			ani2.SetBool ("play_ani", true);
+			Invoke("SetAnimateFalse",1f);
+		}
+
+
+
+		// if there is nothing to pick up. play animation
+		if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
+		{
+
+			ani1.SetBool ("play_ani", true);
+			Invoke("SetAnimateFalse",1f);
+		}
     }
+
+	void SetAnimateFalse()
+	{
+		ani1.SetBool ("play_ani", false);
+		ani2.SetBool ("play_ani", false);
+	}
 
     private void OnTriggerEnter(Collider other)
     {
