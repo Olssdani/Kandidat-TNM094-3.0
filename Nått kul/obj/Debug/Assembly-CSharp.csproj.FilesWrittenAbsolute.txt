@@ -44,3 +44,4 @@
 /Users/Emma/Documents/Uni/TNM094/Kandidat-TNM094-3.0/Nått kul/Temp/bin/Debug/Unity.Cecil.Mdb.dll
 /Users/Emma/Documents/Uni/TNM094/Kandidat-TNM094-3.0/Nått kul/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/Emma/Documents/Uni/TNM094/Kandidat-TNM094-3.0/Nått kul/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/Emma/Documents/Uni/TNM094/Kandidat-TNM094-3.0/Nått kul/Temp/bin/Debug/Facebook.Unity.Settings.dll
