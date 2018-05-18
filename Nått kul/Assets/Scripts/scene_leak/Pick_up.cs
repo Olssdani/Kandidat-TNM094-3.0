@@ -79,6 +79,7 @@ public class Pick_up : MonoBehaviour {
                 {
                     start = Time.time;
                     IsCarried = false;
+                    player.GetComponent<player1_controller_leak>().has_object = false;
                     //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
                 }
                 // Pick up object
@@ -87,6 +88,7 @@ public class Pick_up : MonoBehaviour {
                     start = Time.time;
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                     IsCarried = true;
+                    player.GetComponent<player1_controller_leak>().has_object = true;
                     //this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
                 }
                 else if (IsCarried)
@@ -130,6 +132,7 @@ public class Pick_up : MonoBehaviour {
                 {
                     start = Time.time;
                     IsCarried = false;
+                    player.GetComponent<player1_controller_leak>().has_object = false;
                     //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
                 }
                 // Pick up object
@@ -139,6 +142,7 @@ public class Pick_up : MonoBehaviour {
                     start = Time.time;
                     this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
                     IsCarried = true;
+                    player.GetComponent<player1_controller_leak>().has_object = true;
                     //this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
                 }
                 else if (IsCarried)
@@ -150,8 +154,8 @@ public class Pick_up : MonoBehaviour {
 				// if there is nothing to pick up. play animation
 				if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
 				{
-					ani2.SetBool ("play_ani", true);
-					Invoke("SetAnimateFalse",1f);
+					//ani2.SetBool ("play_ani", true);
+					//Invoke("SetAnimateFalse",1f);
 				}
 
 
@@ -160,8 +164,8 @@ public class Pick_up : MonoBehaviour {
 				if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
 				{
 
-					ani1.SetBool ("play_ani", true);
-					Invoke("SetAnimateFalse",1f);
+					//ani1.SetBool ("play_ani", true);
+					//Invoke("SetAnimateFalse",1f);
 				}
 
 
@@ -171,11 +175,11 @@ public class Pick_up : MonoBehaviour {
 
     }
 
-	void SetAnimateFalse()
+	/*void SetAnimateFalse()
 	{
 		ani1.SetBool ("play_ani", false);
 		ani2.SetBool ("play_ani", false);
-	}
+	}*/
 
     private void OnTriggerEnter(Collider other)
     {

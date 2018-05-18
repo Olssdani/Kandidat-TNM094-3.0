@@ -23,9 +23,14 @@ public class player1_controller_leak : MonoBehaviour
     public float moveHorizontal = 0;
     public float moveVertical = 0;
     public Vector3 velocity;
+
+    private Animator ani;
+    public bool has_object;
     void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+        ani = GetComponent<Animator>();
+        has_object = false;
 	}
 
 	void FixedUpdate()
@@ -73,4 +78,31 @@ public class player1_controller_leak : MonoBehaviour
         //Add the force to the player
         rb.AddForce(movement);
 	}
+
+
+    void Update()
+    {
+        //Will show animation if it doesn't carries a object.
+        if(PlayerNr ==1 &&controller.ButtonPressed("Button4") && !has_object)
+        {
+            ani.SetBool("play_ani", true);
+            Invoke("SetAnimateFalse", 1f);
+        }
+        else if(PlayerNr == 2 && controller.ButtonPressed("Button5") && !has_object)
+        {
+            ani.SetBool("play_ani", true);
+            Invoke("SetAnimateFalse", 1f);
+        }
+
+
+
+
+
+    }
+
+    void SetAnimateFalse()
+    {
+        ani.SetBool("play_ani", false);
+      
+    }
 }
