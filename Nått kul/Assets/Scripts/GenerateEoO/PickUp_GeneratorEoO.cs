@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* ***************************************************
- * Author: Oliver Johansson
+ * Author: Oliver Johansson (Daniel Olsson)
  * 
  * Used for picking up objects, attach this script to the object
  * to make it able to pick up by the player. 
@@ -84,23 +84,14 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
         // Pick up object
         else if (controller.ButtonPressed("Button4") && !IsCarried && hasPlayer)
         {
-            playerPos = player.transform.position;
-            playerDirection = player.transform.forward;
-            rb.isKinematic = false;
             Debug.Log("Carried");
-            //DET HÄR FUNKAR INTEEEEEEEEEEEEEEE
-            this.gameObject.transform.position = new Vector3(player.transform.GetChild(0).position.x, player.transform.GetChild(0).position.y, player.transform.GetChild(0).position.z) + playerDirection;
-            /*carryPos = playerPos + playerDirection * 10;
-            this.gameObject.transform.position = carryPos; */
+            this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
             IsCarried = true;
-            //transform.parent = player;
+
         }
         else if (IsCarried)
         {
-            playerDirection = player.transform.forward;
-            /*carryPos = playerPos + playerDirection * 10;
-            this.gameObject.transform.position = carryPos;*/
-            this.gameObject.transform.position = new Vector3(player.transform.GetChild(0).position.x, player.transform.GetChild(0).position.y, player.transform.GetChild(0).position.z) + playerDirection;
+            this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
         }
     }
 }

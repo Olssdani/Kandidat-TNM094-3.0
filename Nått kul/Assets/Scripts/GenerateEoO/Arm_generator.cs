@@ -23,7 +23,7 @@ public class Arm_generator : MonoBehaviour {
 	//Initialation of variables
 	void Start () {
 		anim = arm.GetComponent<Animator>();
-		anim.Play("Grab");
+		anim.Play("MoveArm");
 		anim.SetFloat("Direction", 0.0f);
 		counter = 0;
 		//Start button light.
@@ -33,12 +33,10 @@ public class Arm_generator : MonoBehaviour {
 	// Update is called once per frame. Checks for inputs.
 	void FixedUpdate () {
         //Rotate and extend arm
-        //Debug.Log(controller.GetAxis("Right", "Vertical"));
 		if (controller.GetAxis("Right", "Vertical") > 0)
 		{
             //Debug.Log("Arm");
             //Debug.Log("HEJ");
-            anim.Play("Grab");
 			if (counter < 65)
 			{
 				anim.SetFloat("Direction", 1.0f);
@@ -51,7 +49,7 @@ public class Arm_generator : MonoBehaviour {
 		}
 		else
 		{
-			if (counter > 0)
+			if (counter > 1)
 			{
 				anim.SetFloat("Direction", -1.0f);
 				counter -= 1;

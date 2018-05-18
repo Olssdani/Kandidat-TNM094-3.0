@@ -5,25 +5,24 @@ using UnityEngine;
 public class StartMainGenerator : MonoBehaviour {
 
     ControllerInput controller = new ControllerInput();
-    public GameObject light_red;
-    public GameObject light_green;
-    public GameObject light_blue;
+    public GameObject light_white;
+    public GameObject light_green1;
+    public GameObject light_green2;
     public GameObject coreMotor1;
     public GameObject coreMotor2;
     public GameObject coreLight1;
     public GameObject coreLight2;
 
 	//materials
-    public Material GlowRed;
+    public Material GlowWhite;
     public Material GlowGreen;
-    public Material GlowBlue;
     public Material GlowYellow;
     public Material noGlow;
 
 	//lights
-	public Light redLight;
-	public Light greenLight;
-	public Light blueLight;
+	public Light green1Light;
+	public Light whiteLight;
+	public Light green2Light;
 	public Light yellowFirstLight;
 	public Light yellowSecondLight;
 	public Light yellowThirdLight;
@@ -50,42 +49,42 @@ public class StartMainGenerator : MonoBehaviour {
 
         {
 			if (!input1) {
-				light_red.GetComponent<Renderer>().material = GlowRed;
-				redLight.enabled = true;
+				light_green1.GetComponent<Renderer>().material = GlowGreen;
+				green1Light.enabled = true;
 			}
          
 			if (!input2) {
-				light_green.GetComponent<Renderer> ().material = GlowGreen;
-				greenLight.enabled = true;
+				light_white.GetComponent<Renderer> ().material = GlowWhite;
+				whiteLight.enabled = true;
 			}
 
 			if (!input2) {
-				light_blue.GetComponent<Renderer> ().material = GlowBlue;
-				blueLight.enabled = true;
+				light_green2.GetComponent<Renderer> ().material = GlowGreen;
+				green2Light.enabled = true;
 			}
 
             if (controller.ButtonPressed("Button1")) {
                 input1 = true;
-				redLight.enabled = false;
+				green1Light.enabled = false;
 				yellowFirstLight.enabled = true;
-                light_red.GetComponent<Renderer>().material = GlowYellow;
+                light_green1.GetComponent<Renderer>().material = GlowYellow;
             }
 
             if(controller.ButtonPressed("Button2") && input1)
             {
                 input2 = true;
-				greenLight.enabled = false;
+				whiteLight.enabled = false;
 				yellowSecondLight.enabled = true;
-                light_green.GetComponent<Renderer>().material = GlowYellow;
+                light_white.GetComponent<Renderer>().material = GlowYellow;
             }
 
             if (controller.ButtonPressed("Button1") && input2)
             {
                 input3 = true;
 				started = true;
-				blueLight.enabled = false;
+				green2Light.enabled = false;
 				yellowThirdLight.enabled = true;
-                light_blue.GetComponent<Renderer>().material = GlowYellow;
+                light_green2.GetComponent<Renderer>().material = GlowYellow;
             }
 
             if (started)
@@ -99,12 +98,12 @@ public class StartMainGenerator : MonoBehaviour {
         }
 		else if(!started)
         {
-            light_red.GetComponent<Renderer>().material = noGlow;
-            light_green.GetComponent<Renderer>().material = noGlow;
-            light_blue.GetComponent<Renderer>().material = noGlow;
-			redLight.enabled = false;
-			blueLight.enabled = false;
-			greenLight.enabled = false;
+            light_green1.GetComponent<Renderer>().material = noGlow;
+            light_green2.GetComponent<Renderer>().material = noGlow;
+            light_white.GetComponent<Renderer>().material = noGlow;
+			green1Light.enabled = false;
+			whiteLight.enabled = false;
+			green2Light.enabled = false;
 			yellowFirstLight.enabled = false;
 			yellowSecondLight.enabled = false;
 			yellowThirdLight.enabled = false;
