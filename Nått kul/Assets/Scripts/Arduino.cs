@@ -141,9 +141,7 @@ public class Arduino : MonoBehaviour {
                 controllers[i] = (int)(Duo_read[i] - '0');
                
             }
-            //Debug.Log(controllers[0] + " " + controllers[1]);
             //Adds the joystick state into the joystick variable
-            //lägg till horisontal och vertikal
             for (int i = 0; i < 2; i++)
             {
                
@@ -199,7 +197,6 @@ public class Arduino : MonoBehaviour {
                     Joystick[i * 2 + 1] += 1 * (float)Math.Pow(delta[i], exponent);
                 }
             }
-            //Debug.Log(Joystick[0] + " " + Joystick[1] + " " + Joystick[2] + " " + Joystick[3]);
             for (int i =0; i<4; i++)
             {
                 if(Joystick[i] >0 && Joystick[i] > 1)
@@ -209,8 +206,7 @@ public class Arduino : MonoBehaviour {
                 {
                     Joystick[i] = -1;
                 }
-            }
-            
+            }      
         }
     }
 
@@ -219,7 +215,6 @@ public class Arduino : MonoBehaviour {
     void Update()
     {
         get_data();
-        //Debug.Log(Joystick[0] + " " + Joystick[1] + " " + Joystick[2] + " " + Joystick[3]);
     }
     //When object is destroyed we close the stream to the arduino
     void OnDestroy()
