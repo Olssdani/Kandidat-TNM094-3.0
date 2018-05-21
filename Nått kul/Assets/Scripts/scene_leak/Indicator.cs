@@ -48,7 +48,6 @@ public class Indicator : MonoBehaviour {
         if (other.gameObject.CompareTag("Pick-up1"))
         {
             //If the leak has collid with the pick up and the pick isn't carried we disable the rendering
-            //if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
             if (mission_controller.show(nr) && controller.ButtonPressed("Button4"))
             {
                 leak.Stop();
@@ -61,7 +60,6 @@ public class Indicator : MonoBehaviour {
         if (other.gameObject.CompareTag("Pick-up2"))
         {
             //If the leak has collid with the pick up and the pick isn't carried we disable the rendering
-            //if (mission_controller.show(nr) && !other.gameObject.GetComponent<Pick_up>().Carried())
             if (mission_controller.show(nr) && controller.ButtonPressed("Button5"))
             {
                 leak.Stop();
