@@ -15,175 +15,91 @@ public class Pick_up : MonoBehaviour {
 
     //Which pick it is
     public int nr;
+    
     //Script that controll all the pick ups and leaks
     public Mission_Controller mission_controller;
+    
     //True if the object is carried
     private bool IsCarried;
     private bool able_for_pickup = false;
+    
     //See if it is the first time 
     private bool first_time;
+    
     //The object that the pickup collid with
     GameObject player;
+    
     //Time variabels
     float delta = 0;
     float start = 0;
+
+    //String
+    string button = "";
+
     //Orgin position
     public Vector3 origin;
 
-
-	private Animator ani1;
-	private Animator ani2;
-
-	private Animator animator;
-
-	public GameObject char1;
-	public GameObject char2;
-
-	private bool play_ani;
-
     // Use this for initialization
     void Start () {
-        //Set rendering to false
+        // Get the start position
         origin = transform.position;
+        //Disable the rigidbody
         GetComponent<Rigidbody>().isKinematic = true;
+
         IsCarried = false;
         first_time = true;
-
-		// set the animation for not picking up the object tp false
-		ani1 = char1.GetComponent<Animator> ();
-		ani2 = char2.GetComponent<Animator> ();
     }
-	
-	// Update is called once per frame
+
 	void FixedUpdate () 
 	{
+        //For the first frame when the pick up should show
         if (mission_controller.show(nr)&& first_time)
         {
             first_time = false;
+            //Activate the rigidbody and then add a force to it
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddForce(-15.0f, 0, 0, ForceMode.Impulse);
         }
-
-        if(gameObject.tag == "Pick-up1")
-        {
-           
-            //Only check against object that is shown
-            if (mission_controller.show(nr))
-            {
-                //Render object and get delta time 
-                delta = Time.time - start;
-
-               
-                //Drop object
-                if (controller.ButtonPressed("Button4") && IsCarried && delta > 1.0f)
-                {
-                    start = Time.time;
-                    IsCarried = false;
-                    player.GetComponent<player1_controller_leak>().has_object = false;
-                    //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
-                }
-                // Pick up object
-                else if (controller.ButtonPressed("Button4") && !IsCarried && able_for_pickup && delta > 1.0f)
-                {
-                    start = Time.time;
-                    this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
-                    IsCarried = true;
-                    player.GetComponent<player1_controller_leak>().has_object = true;
-                    //this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
-                }
-                else if (IsCarried)
-                {
-
-                    this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
-                }
-
-
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
-				{
-					ani2.SetBool ("play_ani", true);
-					Invoke("SetAnimateFalse",1f);
-				}
-
-
-
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
-				{
-
-					ani1.SetBool ("play_ani", true);
-					Invoke("SetAnimateFalse",1f);
-				}
-
-
-
-            }
-
+        if(gameObject.tag == "Pick-up1"){
+            button = "Button4";
         }else if(gameObject.tag == "Pick-up2")
         {
-            //Only check against object that is shown
-            if (mission_controller.show(nr))
+            button = "Button5";
+        }
+        //Only check against object that is shown
+        if (mission_controller.show(nr))
+        {
+        //Get delta time for the wait time between pick up and dropping object
+            delta = Time.time - start;
+          
+            //Drop object
+            if (controller.ButtonPressed(button) && IsCarried && delta > 1.0f)
             {
-                //Render object and get delta time 
-                delta = Time.time - start;
-
-                //Drop object
-                if (controller.ButtonPressed("Button5") && IsCarried && delta > 1.0f)
-                {
-                    start = Time.time;
-                    IsCarried = false;
-                    player.GetComponent<player1_controller_leak>().has_object = false;
-                    //this.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
-                }
-                // Pick up object
-                else if (controller.ButtonPressed("Button5") && !IsCarried && able_for_pickup && delta > 1.0f)
-                {
-
-                    start = Time.time;
-                    this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
-                    IsCarried = true;
-                    player.GetComponent<player1_controller_leak>().has_object = true;
-                    //this.gameObject.GetComponent<Rigidbody>().detectCollisions= false;
-                }
-                else if (IsCarried)
-                {
-
-                    this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
-                }
-
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button5") && !IsCarried && !able_for_pickup) 
-				{
-					//ani2.SetBool ("play_ani", true);
-					//Invoke("SetAnimateFalse",1f);
-				}
-
-
-
-				// if there is nothing to pick up. play animation
-				if (controller.ButtonPressed ("Button4") && !IsCarried && !able_for_pickup) 
-				{
-
-					//ani1.SetBool ("play_ani", true);
-					//Invoke("SetAnimateFalse",1f);
-				}
-
-
+                start = Time.time;
+                IsCarried = false;
+                //Bool for the player to know if it has an object
+                player.GetComponent<player1_controller_leak>().has_object = false;
+            }
+            // Pick up object
+            else if (controller.ButtonPressed(button) && !IsCarried && able_for_pickup && delta > 1.0f)
+            {
+                start = Time.time;
+                //Makes the object follow the pre selected position
+                this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
+                IsCarried = true;
+                player.GetComponent<player1_controller_leak>().has_object = true;
+            }
+            else if (IsCarried)
+            {
+                //Makes the object follow the player
+                this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
             }
         }
-
-
     }
-
-	/*void SetAnimateFalse()
-	{
-		ani1.SetBool ("play_ani", false);
-		ani2.SetBool ("play_ani", false);
-	}*/
 
     private void OnTriggerEnter(Collider other)
     {
-   
+        //Checks with mission that is active
         if (mission_controller.show(nr))
         {
             // Make object able for pickup
