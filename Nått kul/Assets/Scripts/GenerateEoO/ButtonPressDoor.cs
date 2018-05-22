@@ -79,7 +79,7 @@ public class ButtonPressDoor : MonoBehaviour {
         {
             cableWhite1.GetComponent<Renderer>().material = GlowWhite;
             cableWhite2.GetComponent<Renderer>().material = GlowWhite;
-
+            
             if(!unlocked)
             {
                 redPulse1.enabled = true;
@@ -94,24 +94,32 @@ public class ButtonPressDoor : MonoBehaviour {
 
             if (controller.ButtonPressed("Button4") && nearbyWhite)
             {
+                
                 ++counterWhite;
                 if (counterWhite > 10 && counterWhite <= 20)
                 {
                     loadFirstWhite.GetComponent<Renderer>().material = GlowWhite;
                     firstLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
                 }
 
                 if (counterWhite > 20 && counterWhite <= 30)
                 {
                     loadSecondWhite.GetComponent<Renderer>().material = GlowWhite;
                     secondLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
                 }
 
-                if (counterWhite > 30)
+                if (counterWhite > 30 && counterWhite <= 40)
                 {
                     loadThirdWhite.GetComponent<Renderer>().material = GlowWhite;
                     thirdLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
 
+                }
+                if (counterWhite > 40)
+                {
+                    ButtoneSoundeManagerScript.PlaySound(" ");
                 }
             }
 

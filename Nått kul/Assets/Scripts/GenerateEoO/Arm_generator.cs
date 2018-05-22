@@ -14,7 +14,8 @@ public class Arm_generator : MonoBehaviour {
 	public GameObject battery;
 	private Animator anim;
 	public int counter;
-
+    private bool playSound = true;
+    private bool reverseSound = true; 
 
 	/*****************************************************
     ****************Functions implementation**************
@@ -28,6 +29,8 @@ public class Arm_generator : MonoBehaviour {
 		counter = 0;
 		//Start button light.
 		controller.Change_Light(true, 1);
+
+      
 	}
 
 	// Update is called once per frame. Checks for inputs.
@@ -36,35 +39,64 @@ public class Arm_generator : MonoBehaviour {
         //Debug.Log(controller.GetAxis("Right", "Vertical"));
 		if (controller.GetAxis("Right", "Vertical") > 0)
 		{
-            //Debug.Log("Arm");
-            //Debug.Log("HEJ");
+            reverseSound = true;
             anim.Play("Grab");
-			if (counter < 65)
-			{
-				anim.SetFloat("Direction", 1.0f);
+               if (playSound == true)
+            {
+                    RobotArmSoundManagerScript.PlaySound("robotarmModify3");
+                    playSound = false;
+            }
+           
+            if (counter < 65)
+            {
+                anim.SetFloat("Direction", 1.0f);
 				counter += 1;
-			}
-			else
+
+           //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
+       
+
+            }
+            else
 			{
-				anim.SetFloat("Direction", 0.0f);
+               
+                anim.SetFloat("Direction", 0.0f);
 			}
 		}
 		else
-		{
-			if (counter > 0)
+        {
+            playSound = true;
+
+            if (counter > 0)
 			{
-				anim.SetFloat("Direction", -1.0f);
+
+                anim.SetFloat("Direction", -1.0f);
 				counter -= 1;
-			}
-			else
+               if(reverseSound == true)
+                {
+                    RobotArmSoundManagerScript.PlaySound("robotarmModify3reverse");
+                    reverseSound = false; 
+                }
+
+            }
+        
+            else
 			{
 				anim.SetFloat("Direction", 0.0f);
 			}
 		}
+        // play sound when rotating the robot arm. 
+     if(controller.GetAxis("Right","Horizontal") != 0 )
+        {
+            RobotArmSoundManagerScript.PlaySound("armrotatortest1");
 
-		arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
+            if (controller.GetAxis("Right", "Horizontal") == 0)
+            {
+                RobotArmSoundManagerScript.PlaySound(" ");
+            }
+        }
+        arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
 
-
+       
 	}
 
 	//Looks for colissions

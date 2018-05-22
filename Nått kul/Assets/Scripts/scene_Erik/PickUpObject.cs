@@ -29,6 +29,7 @@ public class PickUpObject : MonoBehaviour {
 		// If the player is at the object it can pick it up
         if(other.gameObject.CompareTag("Player")) //will only work if the Player has it's tag set to Player in Unity!!!!!!
         {
+           
 			Debug.Log ("har en player");
             hasPlayer = true;
         }
@@ -72,11 +73,12 @@ public class PickUpObject : MonoBehaviour {
         if (beingCarried)
         {
             //Press Z to release object
-			if (controller.ButtonPressed("Button4") && hasPlayer)
+            if (controller.ButtonPressed("Button4") && hasPlayer)
             {
                 rb.isKinematic = false;
                 transform.parent = null;
                 beingCarried = false;
+                WhiteBatterySoundManagerScript.PlaySound("drop");
             }
         }
         else
@@ -86,9 +88,12 @@ public class PickUpObject : MonoBehaviour {
             {
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
                 rb.isKinematic = true;
-
+                
                 transform.parent = player; // Sets the player to parent so that the object will follow it around
                 beingCarried = true; // Used for if statement above
+
+                WhiteBatterySoundManagerScript.PlaySound("pick");
+    
             }
         }
     }

@@ -55,6 +55,7 @@ public class ArmPickUpBattery : MonoBehaviour {
 			if (controller.ButtonPressed("Button5") && hasArm)
 			{
                 Debug.Log("Hararm");
+               
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
 				rb.isKinematic = true;
 				transform.parent = arm; // Sets the player to parent so that the object will follow it around
