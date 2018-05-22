@@ -24,6 +24,10 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
     private Vector3 playerDirection;
     private Vector3 carryPos;
 
+	//time
+	float start = 0f;
+	float delta = 0f;
+
     void OnTriggerEnter(Collider other)
     {
 
@@ -74,18 +78,22 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
 	
 	void Update ()
     {
+		delta = Time.time - start;
+
         //Drop object
-        if (controller.ButtonPressed("Button4") && IsCarried )
+		if (controller.ButtonPressed("Button4") && IsCarried && delta > 1.0f)
         {
+			start = Time.time;
             IsCarried = false;
             transform.parent = null;
             rb.isKinematic = true;
         }
         // Pick up object
-        else if (controller.ButtonPressed("Button4") && !IsCarried && hasPlayer)
+		else if (controller.ButtonPressed("Button4") && !IsCarried && hasPlayer && delta > 1.0f)
         {
             WhiteBatterySoundManagerScript.PlaySound("pick");
             Debug.Log("Carried");
+			start = Time.time;
             this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
             IsCarried = true;
 
