@@ -2,36 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arm_generator : MonoBehaviour {
+public class Arm_generator : MonoBehaviour
+{
 
-	/*****************************************************
+    /*****************************************************
     ********************Variable definitions**************
     ******************************************************/
-	//Controller class
-	private ControllerInput controller = new ControllerInput();
-	//Robotarm and animation
-	public GameObject arm;
-	public GameObject battery;
-	private Animator anim;
-	public int counter;
+    //Controller class
+    private ControllerInput controller = new ControllerInput();
+    //Robotarm and animation
+    public GameObject arm;
+    public GameObject battery;
+    private Animator anim;
+    public int counter;
     private bool playSound = true;
-    private bool reverseSound = true; 
+    private bool reverseSound = true;
 
-	/*****************************************************
+    /*****************************************************
     ****************Functions implementation**************
     * ****************************************************/
 
-	//Initialation of variables
-	void Start () {
-		anim = arm.GetComponent<Animator>();
-		anim.Play("MoveArm");
-		anim.SetFloat("Direction", 0.0f);
-		counter = 0;
-		//Start button light.
-		controller.Change_Light(true, 1);
+    //Initialation of variables
+    void Start()
+    {
+        anim = arm.GetComponent<Animator>();
+        anim.Play("MoveArm");
+        anim.SetFloat("Direction", 0.0f);
+        counter = 0;
+        //Start button light.
+        controller.Change_Light(true, 1);
 
-      
-	}
+
+    }
 
     // Update is called once per frame. Checks for inputs.
     void FixedUpdate()
@@ -108,15 +110,15 @@ public class Arm_generator : MonoBehaviour {
         }
     }
 
-	//Looks for colissions
-	void OnTriggerEnter(Collider other)
-	{
-		//Debug.Log("Hellooo");
-		//Check if the collid is with the tube
-		if (other.gameObject.CompareTag("BatteryYellow"))
-		{
-			//Makes the animation stop 
+    //Looks for colissions
+    void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("Hellooo");
+        //Check if the collid is with the tube
+        if (other.gameObject.CompareTag("BatteryYellow"))
+        {
+            //Makes the animation stop 
 
-		}
-	}
+        }
+    }
 }

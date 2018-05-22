@@ -5,7 +5,7 @@ using UnityEngine;
 public class RobotArmSoundManagerScript : MonoBehaviour
 {
 
-    public static AudioClip robotArmRotate, robotArmUp, robotArmDown, quitSound;
+    public static AudioClip robotArmRotate, robotArmUp, robotArmDown, quitSound, grab;
 
     static AudioSource robotArmSrc;
 
@@ -16,6 +16,7 @@ public class RobotArmSoundManagerScript : MonoBehaviour
         robotArmUp = Resources.Load<AudioClip>("robotarmModify3");
         robotArmDown = Resources.Load<AudioClip>("robotarmModify3reverse");
         robotArmRotate = Resources.Load<AudioClip>("armrotatortest1");
+        grab = Resources.Load<AudioClip>("robotarmgrab");
 
         robotArmSrc = GetComponent<AudioSource>();
     }
@@ -46,6 +47,12 @@ public class RobotArmSoundManagerScript : MonoBehaviour
                 if (!robotArmSrc.isPlaying)
                 {
                     robotArmSrc.PlayOneShot(robotArmRotate);
+                }
+                break;
+            case "grab":
+                if (!robotArmSrc.isPlaying)
+                {
+                    robotArmSrc.PlayOneShot(grab);
                 }
                 break;
             case " ":

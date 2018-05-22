@@ -22,6 +22,7 @@ public class Claw : MonoBehaviour {
         {
             Debug.Log("trigger");
             anim.SetTrigger("Grab");
+            RobotArmSoundManagerScript.PlaySound("grab");
         }
 	}
 }
