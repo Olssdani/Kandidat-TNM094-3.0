@@ -26,7 +26,7 @@ public class Electricity : MonoBehaviour {
 
 		for (int i = 0; i < particles.GetUpperBound (0); i++) {
 
-			float ForceToAdd = (particles [i].startLifetime - particles [i].lifetime) * (10 * Vector3.Distance (Target.position, particles [i].position));
+			float ForceToAdd = (particles [i].startLifetime - particles [i].remainingLifetime) * (10 * Vector3.Distance (Target.position, particles [i].position));
 
 			//Debug.DrawRay (particles [i].position, (Target.position - particles [i].position).normalized * (ForceToAdd/10));
 
