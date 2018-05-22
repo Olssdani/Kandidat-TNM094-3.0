@@ -8466,7 +8466,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1323479318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c1c917eeb45aa3449f3c6877c644de7, type: 3}
+  m_Script: {fileID: 11500000, guid: f7320085859771a408a0acf129b9bfb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &1323479320
@@ -8524,7 +8524,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -8536,7 +8536,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -8548,7 +8548,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!4 &1323479321
 Transform:
   m_ObjectHideFlags: 0
