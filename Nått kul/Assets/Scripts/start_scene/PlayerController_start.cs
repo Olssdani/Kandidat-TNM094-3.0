@@ -17,6 +17,8 @@ public class PlayerController_start : MonoBehaviour {
     public float speed;
     public float rotateSpeed;
 
+    private bool pressed = true; 
+
     //for the animation
     private Animator anim;
     public GameObject player;
@@ -42,11 +44,36 @@ public class PlayerController_start : MonoBehaviour {
         // Uses the function SimpleMove to move the player using the direction times the float
         cc.SimpleMove(forward * curSpeed);
 
+        //soundeffect
+        if (controller.GetAxis("Left", "Horizontal") != 0 || controller.GetAxis("Left", "Vertical") != 0)
+        {
+            var number = Random.Range(1, 10);
+            if ( number == 1 || number == 7)
+            {
+                KappaJSoundManagerScript.PlaySound("kappaJwalk1");
+            }
+            
+        }
+
+        
         if (controller.ButtonPressed("Button4"))
         {
+
             //Animation
             Debug.Log("Animation");
             anim.SetTrigger("ButtonPress");
+            if(pressed == false)
+            {
+                KappaJSoundManagerScript.PlaySound("pick");
+                pressed = true;
+            }
+            
+
+            //soundeffect            
+        }else if (!controller.ButtonPressed("Button4"))
+        {
+            KappaJSoundManagerScript.PlaySound(" ");
+            pressed = false;
         }
 
     }

@@ -16,9 +16,10 @@ public class ArmPickUpBattery : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		// If the player is at the object it can pick it up
-		if(other.gameObject.CompareTag("Arm")) //will only work if the Player has it's tag set to Player in Unity!!!!!!
+		if(other.gameObject.CompareTag("Arm")) 
 		{
-			hasArm = true;
+            Debug.Log("Arm");
+            hasArm = true;
 		}
 
 	}
@@ -55,6 +56,7 @@ public class ArmPickUpBattery : MonoBehaviour {
 			if (controller.ButtonPressed("Button5") && hasArm)
 			{
                 Debug.Log("Hararm");
+               
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
 				rb.isKinematic = true;
 				transform.parent = arm; // Sets the player to parent so that the object will follow it around

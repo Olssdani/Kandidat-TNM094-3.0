@@ -79,7 +79,7 @@ public class ButtonPressDoor : MonoBehaviour {
         {
             cableWhite1.GetComponent<Renderer>().material = GlowWhite;
             cableWhite2.GetComponent<Renderer>().material = GlowWhite;
-
+            
             if(!unlocked)
             {
                 redPulse1.enabled = true;
@@ -94,24 +94,32 @@ public class ButtonPressDoor : MonoBehaviour {
 
             if (controller.ButtonPressed("Button4") && nearbyWhite)
             {
+                
                 ++counterWhite;
                 if (counterWhite > 10 && counterWhite <= 20)
                 {
                     loadFirstWhite.GetComponent<Renderer>().material = GlowWhite;
                     firstLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
                 }
 
                 if (counterWhite > 20 && counterWhite <= 30)
                 {
                     loadSecondWhite.GetComponent<Renderer>().material = GlowWhite;
                     secondLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
                 }
 
-                if (counterWhite > 30)
+                if (counterWhite > 30 && counterWhite <= 40)
                 {
                     loadThirdWhite.GetComponent<Renderer>().material = GlowWhite;
                     thirdLightWhite.enabled = true;
+                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
 
+                }
+                if (counterWhite > 40)
+                {
+                    ButtoneSoundeManagerScript.PlaySound(" ");
                 }
             }
 
@@ -122,7 +130,15 @@ public class ButtonPressDoor : MonoBehaviour {
             }
 
         }
-        else if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insertGreen)
+        else
+        {
+            cableWhite1.GetComponent<Renderer>().material = Off;
+            cableWhite2.GetComponent<Renderer>().material = Off;
+            buttonWhite.GetComponent<Renderer>().material = OffRed;
+            redPulse1.enabled = false;
+        }
+
+        if (controller.ButtonPressed("Button1") && GameObject.Find("Inserted_Battery_Green").GetComponent<Battery_insert>().insertGreen)
         {
             cableGreen1.GetComponent<Renderer>().material = GlowGreen;
             cableGreen2.GetComponent<Renderer>().material = GlowGreen;
@@ -166,14 +182,10 @@ public class ButtonPressDoor : MonoBehaviour {
             }
         }
         else
-        {
-            cableWhite1.GetComponent<Renderer>().material = Off;
-            cableWhite2.GetComponent<Renderer>().material = Off;
+        {         
             cableGreen1.GetComponent<Renderer>().material = Off;
-            cableGreen2.GetComponent<Renderer>().material = Off;
-            buttonWhite.GetComponent<Renderer>().material = OffRed;
+            cableGreen2.GetComponent<Renderer>().material = Off;    
             buttonGreen.GetComponent<Renderer>().material = OffRed;
-            redPulse1.enabled = false;
             redPulse2.enabled = false;
         }
 
