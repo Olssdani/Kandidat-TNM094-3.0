@@ -49,64 +49,56 @@ public class Arm_generator : MonoBehaviour
                 playSound = false;
             }
 
+
             if (counter < 65)
             {
                 anim.SetFloat("Direction", 1.0f);
-                //Debug.Log("Arm");
-                //Debug.Log("HEJ");
-                if (counter < 65)
-                {
-                    anim.SetFloat("Direction", 1.0f);
-                    counter += 1;
+                counter += 1;
 
-                    //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
+                //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
 
 
-                }
-                else
-                {
-
-                    anim.SetFloat("Direction", 0.0f);
-                }
             }
             else
             {
-                playSound = true;
-
-                if (counter > 0)
-                {
-                    if (counter > 1)
-                    {
-
-                        anim.SetFloat("Direction", -1.0f);
-                        counter -= 1;
-                        if (reverseSound == true)
-                        {
-                            RobotArmSoundManagerScript.PlaySound("robotarmModify3reverse");
-                            reverseSound = false;
-                        }
-
-                    }
-
-                    else
-                    {
-                        anim.SetFloat("Direction", 0.0f);
-                    }
-                }
-                // play sound when rotating the robot arm. 
-                if (controller.GetAxis("Right", "Horizontal") != 0)
-                {
-                    RobotArmSoundManagerScript.PlaySound("armrotatortest1");
-
-                    if (controller.GetAxis("Right", "Horizontal") == 0)
-                    {
-                        RobotArmSoundManagerScript.PlaySound(" ");
-                    }
-                }
-                arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
-
-
+                anim.SetFloat("Direction", 0.0f);
             }
+        }
+        else
+        {
+            playSound = true;
+
+                if (counter > 1)
+                {
+
+                    anim.SetFloat("Direction", -1.0f);
+                    counter -= 1;
+                    if (reverseSound == true)
+                    {
+                        RobotArmSoundManagerScript.PlaySound("robotarmModify3reverse");
+                        reverseSound = false;
+                    }
+
+                }
+
+                else
+                {
+                    anim.SetFloat("Direction", 0.0f);
+                }
+
+            // play sound when rotating the robot arm. 
+            if (controller.GetAxis("Right", "Horizontal") != 0)
+            {
+                RobotArmSoundManagerScript.PlaySound("armrotatortest1");
+
+                if (controller.GetAxis("Right", "Horizontal") == 0)
+                {
+                    RobotArmSoundManagerScript.PlaySound(" ");
+                }
+            }
+            arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
+
+
         }
     }
 

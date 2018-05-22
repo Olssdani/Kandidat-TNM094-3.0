@@ -13,6 +13,10 @@ public class ArmPickUpBattery : MonoBehaviour {
 
 	private Rigidbody rb;
 
+	//time
+	float start = 0f;
+	float delta = 0f;
+
 	void OnTriggerEnter(Collider other)
 	{
 		// If the player is at the object it can pick it up
@@ -40,11 +44,14 @@ public class ArmPickUpBattery : MonoBehaviour {
 
 	void Update()
 	{
+		delta = Time.time - start;
+
 		if (beingCarried)
 		{
 			//Press Z to release object
-			if (controller.ButtonPressed("Button5") && hasArm)
+			if (controller.ButtonPressed("Button5") && hasArm && delta > 1.0f)
 			{
+				start = Time.time;
 				rb.isKinematic = false;
 				transform.parent = null;
 				beingCarried = false;
@@ -53,8 +60,9 @@ public class ArmPickUpBattery : MonoBehaviour {
 		else
 		{
 			//Picks up the object
-			if (controller.ButtonPressed("Button5") && hasArm)
+			if (controller.ButtonPressed("Button5") && hasArm && delta > 1.0f)
 			{
+				start = Time.time;
                 Debug.Log("Hararm");
                
                 // Sets the object to kinematic so it can move around without being affected by gravity or collide with other objects
