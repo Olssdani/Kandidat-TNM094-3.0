@@ -12,9 +12,7 @@ using UnityEngine;
 public class open_door_leak : MonoBehaviour 
 {
 
-	public float reachDistance;
 	// Takes game objects from Unity
-	public GameObject Player; // Player
 	public GameObject Target; // Left side of the door
 	public GameObject Target2; // Right side of the door
 
