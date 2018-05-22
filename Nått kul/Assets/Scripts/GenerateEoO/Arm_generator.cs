@@ -41,7 +41,10 @@ public class Arm_generator : MonoBehaviour {
         if (controller.GetAxis("Right", "Vertical") > 0)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
 =======
 >>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
             reverseSound = true;
@@ -56,13 +59,17 @@ public class Arm_generator : MonoBehaviour {
             {
                 anim.SetFloat("Direction", 1.0f);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
                 //Debug.Log("Arm");
                 //Debug.Log("HEJ");
                 if (counter < 65)
                 {
                     anim.SetFloat("Direction", 1.0f);
                     counter += 1;
+<<<<<<< HEAD
 
 =======
                 //Debug.Log("Arm");
@@ -76,6 +83,12 @@ public class Arm_generator : MonoBehaviour {
                     //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
 
 
+=======
+
+                    //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
+
+
+>>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
                 }
                 else
                 {
@@ -83,6 +96,7 @@ public class Arm_generator : MonoBehaviour {
                     anim.SetFloat("Direction", 0.0f);
                 }
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
         }
         else
@@ -110,6 +124,12 @@ public class Arm_generator : MonoBehaviour {
             {
                 playSound = true;
 
+=======
+            else
+            {
+                playSound = true;
+
+>>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
                 if (counter > 0)
                 {
                     if (counter > 1)
@@ -139,6 +159,7 @@ public class Arm_generator : MonoBehaviour {
                     {
                         RobotArmSoundManagerScript.PlaySound(" ");
                     }
+<<<<<<< HEAD
 >>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
                 }
                 arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
@@ -166,6 +187,15 @@ public class Arm_generator : MonoBehaviour {
     }
 	
 =======
+    }
+>>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
+=======
+                }
+                arm.transform.Rotate(new Vector3(0, controller.GetAxis("Right", "Horizontal"), 0));
+
+
+            }
+        }
     }
 >>>>>>> 7872c3d46aaa4813b12daaba655e239fbdf5b3b8
 
