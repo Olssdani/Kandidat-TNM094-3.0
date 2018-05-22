@@ -16,9 +16,10 @@ public class ArmPickUpBattery : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		// If the player is at the object it can pick it up
-		if(other.gameObject.CompareTag("Arm")) //will only work if the Player has it's tag set to Player in Unity!!!!!!
+		if(other.gameObject.CompareTag("Arm")) 
 		{
-			hasArm = true;
+            Debug.Log("Arm");
+            hasArm = true;
 		}
 
 	}

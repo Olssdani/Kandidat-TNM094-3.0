@@ -24,7 +24,7 @@ public class Arm_generator : MonoBehaviour {
 	//Initialation of variables
 	void Start () {
 		anim = arm.GetComponent<Animator>();
-		anim.Play("Grab");
+		anim.Play("MoveArm");
 		anim.SetFloat("Direction", 0.0f);
 		counter = 0;
 		//Start button light.
@@ -36,9 +36,9 @@ public class Arm_generator : MonoBehaviour {
 	// Update is called once per frame. Checks for inputs.
 	void FixedUpdate () {
         //Rotate and extend arm
-        //Debug.Log(controller.GetAxis("Right", "Vertical"));
 		if (controller.GetAxis("Right", "Vertical") > 0)
 		{
+<<<<<<< HEAD
             reverseSound = true;
             anim.Play("Grab");
                if (playSound == true)
@@ -50,6 +50,13 @@ public class Arm_generator : MonoBehaviour {
             if (counter < 65)
             {
                 anim.SetFloat("Direction", 1.0f);
+=======
+            //Debug.Log("Arm");
+            //Debug.Log("HEJ");
+			if (counter < 65)
+			{
+				anim.SetFloat("Direction", 1.0f);
+>>>>>>> 79c3350a73309115e84573028324cf57d2e6b94f
 				counter += 1;
 
            //     RobotArmSoundManagerScript.PlaySound("robotarmModify3");
@@ -63,10 +70,15 @@ public class Arm_generator : MonoBehaviour {
 			}
 		}
 		else
+<<<<<<< HEAD
         {
             playSound = true;
 
             if (counter > 0)
+=======
+		{
+			if (counter > 1)
+>>>>>>> 79c3350a73309115e84573028324cf57d2e6b94f
 			{
 
                 anim.SetFloat("Direction", -1.0f);
