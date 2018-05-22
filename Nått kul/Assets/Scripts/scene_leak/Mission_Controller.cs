@@ -12,17 +12,30 @@ using UnityEngine;
 public class Mission_Controller : MonoBehaviour {
     bool[] objectiv = new bool[4] { false, false, false, false };
     bool[] mission_completed = new bool[4] { false, false, false, false };
-
-    // Use this for initialization
+    public Canvas win;
+    float time =0;
+    float delta = 0;
+     // Use this for initialization
     void Start () {
         objectiv[0] = true;
+        win.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(mission_completed[0] && mission_completed[1]&& mission_completed[2] && mission_completed[3])
         {
-            Initiate.Fade("start_scene", Color.black, 2.0f);
+            win.enabled = true;
+            if(time == 0)
+            {
+                time = Time.time;
+            }
+            delta = Time.time - time;
+            if(delta > 5.0)
+            {
+                Initiate.Fade("start_scene", Color.black, 2.0f);
+            }
+
         }
 	}
 
@@ -47,7 +60,6 @@ public class Mission_Controller : MonoBehaviour {
 
     public void print()
     {
-       // Debug.Log("Objectiv 0: " + objectiv[0] + " 1: " + objectiv[1] + " 2: " + objectiv[2] + " 3: " + objectiv[3]);
-       // Debug.Log("Mission cleared 0: " + mission_completed[0] + " 1: " + mission_completed[1] + " 2: " + mission_completed[2] + " 3: " + mission_completed[3]);
+      
     }
 }

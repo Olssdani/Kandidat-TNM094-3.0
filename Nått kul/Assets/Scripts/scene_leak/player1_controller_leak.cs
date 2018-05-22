@@ -30,6 +30,8 @@ public class player1_controller_leak : MonoBehaviour
     //Animations
     private Animator ani;
     public bool has_object;
+    float Idle_time; 
+
 
     void Start()
 	{
@@ -37,6 +39,7 @@ public class player1_controller_leak : MonoBehaviour
         ani = GetComponent<Animator>();
         //If object carries another object
         has_object = false;
+        Idle_time = 0;
 	}
 
 	void FixedUpdate()
@@ -52,13 +55,24 @@ public class player1_controller_leak : MonoBehaviour
             moveVertical = controller.GetAxis("Right", "Vertical");
         }
 
+        if(moveHorizontal !=0.0f || moveVertical != 0.0f)
+        {
+            Idle_time = Time.time;
+        }
+        if(Time.time- Idle_time > 5.0f)
+        {
+            Idle_time = Time.time;
+            ani.SetBool("Idle", true);
+            Invoke("SetIdleFalse", 2.5f);
+        }
         //Reset the speed if it is larger than the max speed
         CapSpeed();
 
 		//Move player facing
 		if(moveHorizontal < 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y - 270) > 0.01)
 		{
-			this.gameObject.transform.Rotate(0,180,0);
+
+            this.gameObject.transform.Rotate(0,180,0);
 		}else if (moveHorizontal > 0 && Mathf.Abs(this.gameObject.transform.rotation.eulerAngles.y- 90)>0.01)
 		{
 			this.gameObject.transform.Rotate(0, 180, 0);
@@ -115,4 +129,11 @@ public class player1_controller_leak : MonoBehaviour
         ani.SetBool("play_ani", false);
       
     }
+
+    void SetIdleFalse()
+    {
+        ani.SetBool("Idle", false);
+
+    }
+
 }
