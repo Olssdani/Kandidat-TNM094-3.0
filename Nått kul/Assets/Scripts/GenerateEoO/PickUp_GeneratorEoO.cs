@@ -84,6 +84,7 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
         // Pick up object
         else if (controller.ButtonPressed("Button4") && !IsCarried && hasPlayer)
         {
+            WhiteBatterySoundManagerScript.PlaySound("pick");
             Debug.Log("Carried");
             this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
             IsCarried = true;

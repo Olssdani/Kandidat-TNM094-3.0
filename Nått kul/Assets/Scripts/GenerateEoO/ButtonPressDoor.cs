@@ -100,26 +100,26 @@ public class ButtonPressDoor : MonoBehaviour {
                 {
                     loadFirstWhite.GetComponent<Renderer>().material = GlowWhite;
                     firstLightWhite.enabled = true;
-                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
-                }
-
-                if (counterWhite > 20 && counterWhite <= 30)
-                {
-                    loadSecondWhite.GetComponent<Renderer>().material = GlowWhite;
-                    secondLightWhite.enabled = true;
-                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
+                    ButtonSoundManagerScript.PlaySound("button1Modify");
                 }
 
                 if (counterWhite > 30 && counterWhite <= 40)
                 {
+                    loadSecondWhite.GetComponent<Renderer>().material = GlowWhite;
+                    secondLightWhite.enabled = true;
+                    ButtonSoundManagerScript.PlaySound("button1Modify");
+                }
+
+                if (counterWhite > 50 && counterWhite <= 60)
+                {
                     loadThirdWhite.GetComponent<Renderer>().material = GlowWhite;
                     thirdLightWhite.enabled = true;
-                    ButtoneSoundeManagerScript.PlaySound("button1Modify");
+                    ButtonSoundManagerScript.PlaySound("button1Modify");
 
                 }
-                if (counterWhite > 40)
+                if (counterWhite > 70)
                 {
-                    ButtoneSoundeManagerScript.PlaySound(" ");
+                    ButtonSoundManagerScript.PlaySound(" ");
                 }
             }
 
