@@ -137,6 +137,7 @@ public class Battery_insert : MonoBehaviour {
             }
             else
             {
+                GreenGeneratorSoundManagerScript.PlaySound("generatorModify2");
                 cableGreen1.GetComponent<Renderer>().material = GlowGreen;
                 cableGreen2.GetComponent<Renderer>().material = GlowGreen;
                 cableGreen3.GetComponent<Renderer>().material = GlowGreen;
@@ -162,13 +163,15 @@ public class Battery_insert : MonoBehaviour {
 
             if (!Yellow.GetComponent<MeshRenderer>().enabled)
             {
-                YellowGeneratorSoundManagerScript.PlaySound("game_over");
+                YellowGeneratorSoundManagerScript.PlaySound("sparksModify2");
                 sprakYellow.Emit(10);
                 cableYellow1.GetComponent<Renderer>().material = GlowYellow;
                 cableYellow2.GetComponent<Renderer>().material = GlowYellow;
+                
             }
             else
             {
+                YellowGeneratorSoundManagerScript.PlaySound("generatorModify2");
                 cableYellow1.GetComponent<Renderer>().material = GlowYellow;
                 cableYellow2.GetComponent<Renderer>().material = GlowYellow;
                 cableYellow3.GetComponent<Renderer>().material = GlowYellow;

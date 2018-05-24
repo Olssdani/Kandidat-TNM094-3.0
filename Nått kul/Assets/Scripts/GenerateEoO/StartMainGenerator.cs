@@ -89,6 +89,7 @@ public class StartMainGenerator : MonoBehaviour {
 
             if (started)
             {
+                MainGeneratorManagerScript.PlaySound("maingenerator");
                 coreLight1.GetComponent<Renderer>().material = GlowYellow;
                 coreLight2.GetComponent<Renderer>().material = GlowYellow;
                 generatorLight.enabled = true;
