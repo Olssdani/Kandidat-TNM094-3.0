@@ -30,7 +30,7 @@ public class Arm_generator : MonoBehaviour
         anim.SetFloat("Direction", 0.0f);
         counter = 0;
         //Start button light.
-        controller.Change_Light(true, 1);
+       // controller.Change_Light(true, 1);
 
 
     }

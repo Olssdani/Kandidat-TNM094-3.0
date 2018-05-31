@@ -127,9 +127,9 @@ public class ControllerInput {
     }
     //Controlls the lights of the buttons. Can turn on and off a light. CAUTION!!! Don't put this code in a function that 
     // runs every frame because the light will start flickering.
-    public void Change_Light(bool light, int button)
+   /* public void Change_Light(bool light, int button)
     {
         Arduino.instance.LightButton(light, button);
     }
-
+    */
 }

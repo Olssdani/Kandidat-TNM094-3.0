@@ -28,7 +28,7 @@ public class Arm_Controller : MonoBehaviour {
         anim.SetFloat("Direction", 0.0f);
         counter = 0;
         //Start button light.
-        controller.Change_Light(true, 1);
+       // controller.Change_Light(true, 1);
     }
 	
 	// Update is called once per frame. Checks for inputs.
