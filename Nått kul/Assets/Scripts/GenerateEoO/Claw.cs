@@ -8,13 +8,15 @@ public class Claw : MonoBehaviour {
     public GameObject claw;
     private Animator anim;
     public GameObject arm;
+    private bool playSound; 
 
     void Start () {
         anim = claw.GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         this.gameObject.transform.position = new Vector3(arm.transform.GetChild(0).position.x, arm.transform.GetChild(0).position.y, arm.transform.GetChild(0).position.z);
 
@@ -22,7 +24,15 @@ public class Claw : MonoBehaviour {
         {
             Debug.Log("trigger");
             anim.SetTrigger("Grab");
-            RobotArmSoundManagerScript.PlaySound("grab");
+            if (playSound)
+            {
+                RobotArmSoundManagerScript.PlaySound("grab");
+                playSound = false;
+            }
         }
-	}
+        if (!controller.ButtonPressed("Button5"))
+        {
+            playSound = true;
+        }
+    }
 }
