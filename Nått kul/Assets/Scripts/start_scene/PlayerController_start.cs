@@ -76,5 +76,10 @@ public class PlayerController_start : MonoBehaviour {
             pressed = false;
         }
 
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Initiate.Fade("start_scene", Color.black, 2.0f);
+        }
+
     }
 }
