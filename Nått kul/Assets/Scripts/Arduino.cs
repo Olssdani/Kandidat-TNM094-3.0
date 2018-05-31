@@ -217,6 +217,7 @@ public class Arduino : MonoBehaviour {
     void Update()
     {
         get_data();
+     
     }
     //When object is destroyed we close the stream to the arduino
     void OnDestroy()

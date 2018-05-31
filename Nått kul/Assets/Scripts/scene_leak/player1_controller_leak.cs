@@ -97,6 +97,11 @@ public class player1_controller_leak : MonoBehaviour
             ani.SetBool("play_ani", true);
             Invoke("SetAnimateFalse", 1f);
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Initiate.Fade("start_scene", Color.black, 2.0f);
+        }
     }
     //Sets the speed dependning on the maxspeed
     void CapSpeed()
