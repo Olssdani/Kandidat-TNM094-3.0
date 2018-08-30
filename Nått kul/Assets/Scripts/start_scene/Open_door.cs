@@ -52,6 +52,7 @@ public class Open_door : MonoBehaviour {
         {
             // Plays the animations to open the door
             StartCoroutine(Open1());
+            DoorSoundManagerScript.PlaySound("door");
             /*anim.Play("Open");
             anim2.Play("Open_right");
             open = true;*/
@@ -62,6 +63,7 @@ public class Open_door : MonoBehaviour {
         {
             // Plays the animations to close the door
             StartCoroutine(Close1());
+            DoorSoundManagerScript.PlaySound("door2");
             /*anim.Play("Close");
             anim2.Play("Close_right");
             open = false;*/
@@ -70,10 +72,11 @@ public class Open_door : MonoBehaviour {
 
     IEnumerator Open1()
     {
-    anim.Play("Open");
-    anim2.Play("Open_right");
-    yield return new WaitForSeconds(1.5f);
-    open = true;
+       
+        anim.Play("Open");
+        anim2.Play("Open_right");
+        yield return new WaitForSeconds(1.5f);
+        open = true;
     }
 
     IEnumerator Close1()

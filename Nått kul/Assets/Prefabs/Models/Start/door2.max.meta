@@ -1,10 +1,30 @@
 fileFormatVersion: 2
 guid: a36de218d9dcf3b47818a9202f2cc82e
-timeCreated: 1522153944
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName: {}
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Box004
+    100006: //RootNode
+    400000: Box001
+    400002: Box002
+    400004: Box004
+    400006: //RootNode
+    2100000: No Name
+    2300000: Box001
+    2300002: Box002
+    2300004: Box004
+    2300006: //RootNode
+    3300000: Box001
+    3300002: Box002
+    3300004: Box004
+    3300006: //RootNode
+    4300000: Box003
+    4300002: Box002
+    4300004: Box001
+    4300006: Box004
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -24,6 +44,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -55,6 +76,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

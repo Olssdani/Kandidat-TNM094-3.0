@@ -21,7 +21,7 @@ public class Arduino : MonoBehaviour {
     //Initate a instance of Ardunio
     public static Arduino instance = null;
     //A serialport to the ardunio
-    private SerialPort SerialPort_Nano = new SerialPort("\\\\.\\COM17", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
+    private SerialPort SerialPort_Nano = new SerialPort("\\\\.\\COM15", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
     private SerialPort SerialPort_Duo = new SerialPort("\\\\.\\COM14", 9600); //(9600)  Opens a connection between Unity and a Serialport. 
     //Buttons and joysticks
     bool [] buttons = new bool[5] { false, false, false, false, false };

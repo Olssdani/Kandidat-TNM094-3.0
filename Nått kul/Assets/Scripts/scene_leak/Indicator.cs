@@ -20,7 +20,8 @@ public class Indicator : MonoBehaviour {
     public Mission_Controller mission_controller;
     float time;
     float delta;
- 
+
+    bool soundEffect = true;
 
 	// Use this for initialization
 	void Start () {
@@ -35,11 +36,23 @@ public class Indicator : MonoBehaviour {
         if (mission_controller.show(nr))
         {
             leak.Play();
+            //a sound effect will be played when the metal plate releases from the wall. 
+            
+            if(soundEffect == true)
+            {
+                leakSoundManagerScript.PlaySound("leak-start");
+         
+                // soundEffect is set to false to prevent the eound from being played more then once. 
+                soundEffect = false; 
 
+            }
+           
         }
         else
         {
             leak.Stop();
+            //soundEffect is set to true so that the sound can be played when the next metal plate is active. 
+            soundEffect = true; 
         }
 	}
 
@@ -55,6 +68,9 @@ public class Indicator : MonoBehaviour {
                 other.gameObject.transform.position = other.gameObject.GetComponent<Pick_up>().origin;
                 mission_controller.cleared(nr);
 
+                // play a sound effect when the metal plate is connected to the wall.
+                leakSoundManagerScript.PlaySound("leak-end");
+              
             }
         }
         if (other.gameObject.CompareTag("Pick-up2"))
@@ -67,6 +83,8 @@ public class Indicator : MonoBehaviour {
                 other.gameObject.transform.position = other.gameObject.GetComponent<Pick_up>().origin;
                 mission_controller.cleared(nr);
 
+                // play a sound effect when the metal plate is connected to the wall.
+                leakSoundManagerScript.PlaySound("leak-end");
             }
         }
     }

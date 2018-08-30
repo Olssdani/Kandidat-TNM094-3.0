@@ -39,6 +39,8 @@ public class Pick_up : MonoBehaviour {
     //Orgin position
     public Vector3 origin;
 
+
+
     // Use this for initialization
     void Start () {
         // Get the start position
@@ -105,6 +107,7 @@ public class Pick_up : MonoBehaviour {
             // Make object able for pickup
             if (other.gameObject.CompareTag("player"))
             {
+             
                 player = other.gameObject;
                 able_for_pickup = true;
             }
@@ -115,9 +118,12 @@ public class Pick_up : MonoBehaviour {
     {
         if (mission_controller.show(nr))
         {
+
+         
             // Disable object for pick up
             if (other.gameObject.CompareTag("player"))
             {
+              
                 able_for_pickup = false;
             }
         }

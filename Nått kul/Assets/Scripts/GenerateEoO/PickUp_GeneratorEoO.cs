@@ -94,7 +94,9 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
             WhiteBatterySoundManagerScript.PlaySound("pick");
             Debug.Log("Carried");
 			start = Time.time;
-            this.gameObject.transform.position = new Vector3(player.transform.GetChild(11).position.x, player.transform.GetChild(11).position.y, player.transform.GetChild(11).position.z);
+            //use setParent
+            this.gameObject.transform.SetParent(player);
+            this.gameObject.transform.position = new Vector3(5,5,5);
             IsCarried = true;
 
         }

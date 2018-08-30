@@ -134,10 +134,13 @@ public class open_door_leak : MonoBehaviour
 	// Plays the animations to open the door
 	void open()
 	{
+
 		anim.Play ("Open");
 		anim2.Play ("Open_right");
 
 		start = Time.time;
+
+        DoorSoundManagerScript.PlaySound("door"); 
 	}
 
 	// Plays the animations to close the door
@@ -147,6 +150,8 @@ public class open_door_leak : MonoBehaviour
 		anim2.Play("Close_right");
 
 		start = Time.time;
+
+        DoorSoundManagerScript.PlaySound("door2");
 	}
 
 
