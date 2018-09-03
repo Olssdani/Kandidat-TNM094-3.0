@@ -16,6 +16,8 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
     public Transform player;
     private Rigidbody rb;
 
+    public GameObject Pivot;
+
     public bool hasPlayer = false;
     bool IsCarried = false;
     public bool inserted = false;
@@ -95,8 +97,11 @@ public class PickUp_GeneratorEoO : MonoBehaviour {
             Debug.Log("Carried");
 			start = Time.time;
             //use setParent
+            float x = player.rotation.y;
+            print(x);
+            this.gameObject.transform.position = Pivot.transform.position;
+            this.gameObject.transform.Rotate(Vector3.forward * 90f);
             this.gameObject.transform.SetParent(player);
-            this.gameObject.transform.position = new Vector3(5,5,5);
             IsCarried = true;
 
         }
